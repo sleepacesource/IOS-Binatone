@@ -1,0 +1,13 @@
+/* 
+  InfoPlist.strings
+  Binatone-demo
+
+  Created by Martin on 22/8/18.
+  Copyright © 2018年 Martin. All rights reserved.
+*/
+CFBundleDisplayName = "MBP89SN SDK";
+NSPhotoLibraryUsageDescription = "Please click \"OK\" to allow access.Otherwise, you can not change your profile picture.";
+NSCameraUsageDescription = "Please click \"OK\" to allow access.Otherwise, you can not change your profile picture.";
+NSBluetoothPeripheralUsageDescription = "Please turn on Bluetooth in \"Settings>Bluetooth\". Otherwise, device can not be connected.";
+NSHealthShareUsageDescription = "Please click \"OK\" to allow access.Otherwise, you can not sync data to “Health”";
+NSHealthUpdateUsageDescription = "Please click \"OK\" to allow access.Otherwise, you can not sync data to “Health”";
