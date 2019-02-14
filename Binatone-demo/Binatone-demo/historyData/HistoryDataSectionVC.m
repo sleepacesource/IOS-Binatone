@@ -80,7 +80,7 @@ enum {
     NSDate *date = [NSDate date];
     NSInteger timestamp = [date timeIntervalSince1970];
     KFLog_Normal(YES, @"get history data");
-    [SLPBLESharedManager binatone:SharedDataManager.peripheral getHistoryData:0 endTime:timestamp sex:1 each:^(NSInteger index, NSInteger count, BinatoneHistoryData *data) {
+    [SLPBLESharedManager binatone:SharedDataManager.peripheral getHistoryData:0 endTime:timestamp sex:0 each:^(NSInteger index, NSInteger count, BinatoneHistoryData *data) {
         [loadingView setText:[NSString stringWithFormat:@"%ld/%ld", (long)index+1, (long)count]];
     } completion:^(SLPDataTransferStatus status, NSArray<BinatoneHistoryData *> *dataList) {
         KFLog_Normal(YES, @"download history data finished %d",status);
