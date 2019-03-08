@@ -16,8 +16,8 @@ typedef NS_ENUM(NSInteger, RealtimeDataStaus) {
 
 @interface RealtimeData : NSObject
 @property (nonatomic, assign) RealtimeDataStaus status;
-@property (nonatomic, assign) NSInteger heartRate;
-@property (nonatomic, assign) NSInteger breathRate;
+@property (nonatomic, strong) NSString * heartRate;
+@property (nonatomic, strong) NSString * breathRate;
 
 - (void)toInit;
 @end
