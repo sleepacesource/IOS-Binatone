@@ -90,7 +90,7 @@ enum {
     self.realtimeData.heartRate = [NSString stringWithFormat:@"%ld",(long)data.breathRate];
     
     ///体动或者翻身判断(放置业务逻辑层)
-    if (data.status == 4||data.status == 6|| data.status == 5) {
+    if (data.status == 4||data.status == 6) {
         isFlag = YES;
         [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(timeDelay) object:nil];//取消
         [self performSelector:@selector(timeDelay) withObject:nil afterDelay:10.0];
