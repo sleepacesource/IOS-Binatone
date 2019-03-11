@@ -26,7 +26,7 @@ enum {
 };
 
 @interface RealTimeDataViewController ()<UITableViewDelegate, UITableViewDataSource>{
-       BOOL isFlag;///体动判断
+    
 }
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) RealtimeData *realtimeData;
@@ -86,26 +86,10 @@ enum {
     }else{
         self.realtimeData.status = RealtimeDataStaus_InBed;
     }
-    self.realtimeData.breathRate = [NSString stringWithFormat:@"%ld",(long)data.breathRate];
-    self.realtimeData.heartRate = [NSString stringWithFormat:@"%ld",(long)data.breathRate];
-    
-    ///体动或者翻身判断(放置业务逻辑层)
-    if (data.status == 4||data.status == 6) {
-        isFlag = YES;
-        [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(timeDelay) object:nil];//取消
-        [self performSelector:@selector(timeDelay) withObject:nil afterDelay:10.0];
-    }
-    if (isFlag) {
-        self.realtimeData.breathRate = @"--";
-        self.realtimeData.heartRate = @"--";
-    }
+    self.realtimeData.breathRate = data.breathRate;
+    self.realtimeData.heartRate = data.breathRate;
     
     [self.tableView reloadData];
-}
-
-
-- (void)timeDelay{
-    isFlag = NO;
 }
 
 - (IBAction)realtimeButtonClicked:(id)sender {

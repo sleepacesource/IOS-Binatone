@@ -10,8 +10,8 @@
 
 @interface BinatoneRealTimeData : NSObject
 
-@property (nonatomic,assign) UInt8 breathRate;//呼吸率
-@property (nonatomic,assign) UInt8 heartRate;//心率
+@property (nonatomic,copy) NSString * breathRate;//呼吸率
+@property (nonatomic,copy) NSString * heartRate;//心率
 @property (nonatomic,assign) NSInteger status;//状态
 @property (nonatomic,assign) NSInteger statusValue;//状态值
 
