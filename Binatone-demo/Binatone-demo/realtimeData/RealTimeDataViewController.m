@@ -79,6 +79,7 @@ enum {
 - (void)realtimeDataNotification:(NSNotification *)notification {
     NSDictionary *userInfo = notification.userInfo;
     BinatoneRealTimeData *data = [userInfo objectForKey:kNotificationPostData];
+    NSLog(@"st--->>%ld,b-->>%@,h--->>%@,off bed--->>%d",(long)data.status,data.breathRate,data.heartRate,data.isOffBed);
     if (data.isInit) {
         self.realtimeData.status = RealtimeDataStaus_Invalid;
     }else if (data.isOffBed) {
