@@ -1,0 +1,6 @@
+framework module Binatone {
+  umbrella header "Binatone.h"
+
+  export *
+  module * { export * }
+}
