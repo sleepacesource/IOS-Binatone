@@ -11,11 +11,12 @@
 #import "TabBarItemCell.h"
 #import <math.h>
 #import <BluetoothManager/BluetoothManager.h>
+#import <Binatone/Binatone.h>
 
 #define kMenuItemHeight 49.0
 #define kMenuItemID @"TabBarItemCell"
 
-@interface MainViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface MainViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIAlertViewDelegate>
 @property (nonatomic, weak) IBOutlet UIView *contentView;
 @property (nonatomic, weak) IBOutlet UIView *menuShell;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *menuHeight;
@@ -25,6 +26,9 @@
 @property (nonatomic, assign) NSInteger selectedIndex;
 @property (nonatomic, strong) UIViewController *selectedViewController;
 @property (nonatomic, strong) NSArray *tabControllerItems;
+
+@property (nonatomic, assign) BOOL showAlert;
+
 @end
 
 @implementation MainViewController
@@ -101,6 +105,8 @@
     NSNotificationCenter *notificationCeter = [NSNotificationCenter defaultCenter];
     [notificationCeter addObserver:self selector:@selector(deviceConnected:) name:kNotificationNameBLEDeviceConnected object:nil];
     [notificationCeter addObserver:self selector:@selector(deviceDisconnected:) name:kNotificationNameBLEDeviceDisconnect object:nil];
+    [notificationCeter addObserver:self selector:@selector(breathAlarm:) name:kNotificationNameBinatoneBreathStopAlarm object:nil];
+    [notificationCeter addObserver:self selector:@selector(leftBedAlarm:) name:kNotificationNameBinatoneLeftBedAlarm object:nil];
 }
 
 - (void)deviceConnected:(NSNotification *)notification {
@@ -115,6 +121,32 @@
 //    [self showIndex:0];
 //    [SharedDataManager toInit];
     SharedDataManager.connected = NO;
+}
+
+- (void)breathAlarm:(NSNotification *)notfication {
+    if (self.showAlert) {
+        return;
+    }
+    
+    self.showAlert = YES;
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"出现了呼吸暂停报警，请立即关注" message:nil delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+    [alert show];
+}
+
+- (void)leftBedAlarm:(NSNotification *)notfication {
+    if (self.showAlert) {
+        return;
+    }
+    
+    self.showAlert = YES;
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"出现了离床报警，请立即关注" message:nil delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    self.showAlert = NO;
 }
 
 #pragma mark UICollectionViewDelegate UICollectionViewDataSource
