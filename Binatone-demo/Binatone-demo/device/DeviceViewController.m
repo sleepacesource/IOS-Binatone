@@ -34,10 +34,13 @@
 @property (nonatomic, weak) IBOutlet UIButton *getFirmwareVersionBtn;
 @property (nonatomic, weak) IBOutlet UILabel *firmwareVersionLabel;
 @property (nonatomic, weak) IBOutlet UIButton *upgradeBtn;
-
 //setting
 @property (nonatomic, weak) IBOutlet UIView *settingShell;
 @property (nonatomic, weak) IBOutlet UILabel *settingSectionLabel;
+@property (nonatomic, weak) IBOutlet UIView *leftBedAlarmUpLine;
+@property (nonatomic, weak) IBOutlet UILabel *leftBedAlarmTitleLabel;
+@property (nonatomic, weak) IBOutlet UISwitch *leftBedAlarmEnableSwitch;
+@property (nonatomic, weak) IBOutlet UIView *leftBedAlarmDownLine;
 @property (nonatomic, weak) IBOutlet UIView *alarmUpLine;
 @property (nonatomic, weak) IBOutlet UILabel *alarmTitleLabel;
 @property (nonatomic, weak) IBOutlet UISwitch *alarmEnableSwitch;
@@ -97,6 +100,7 @@
     [Utils setButton:self.getMacBtn title:LocalizedString(@"obtain_mac_address")];
     [Utils setButton:self.upgradeBtn title:LocalizedString(@"fireware_update")];
     
+    [self.leftBedAlarmTitleLabel setText:LocalizedString(@"apnea_alert")];
     [self.alarmTitleLabel setText:LocalizedString(@"apnea_alert")];
     [self.alarmTimeLabel setText:LocalizedString(@"set_alert_switch")];
     [self.alarmTimeIcon setImage:[UIImage imageNamed:@"common_list_icon_leftarrow.png"]];
@@ -106,10 +110,13 @@
     [self.firmwareInfoSectionLabel setText:LocalizedString(@"firmware_info")];
     [self.settingSectionLabel setText:LocalizedString(@"setting")];
     
+    [self.leftBedAlarmUpLine setBackgroundColor:Theme.normalLineColor];
+    [self.leftBedAlarmDownLine setBackgroundColor:Theme.normalLineColor];
     [self.alarmUpLine setBackgroundColor:Theme.normalLineColor];
     [self.alarmDownLine setBackgroundColor:Theme.normalLineColor];
     [self.alarmTimeDownLine setBackgroundColor:Theme.normalLineColor];
     
+    [Utils configCellTitleLabel:self.leftBedAlarmTitleLabel];
     [Utils configCellTitleLabel:self.alarmTitleLabel];
     [Utils configCellTitleLabel:self.alarmTimeLabel];
     
@@ -320,6 +327,12 @@
             }
         }
     }];
+}
+
+- (IBAction)leftBedAlarmEnableValueChanged:(UISwitch *)sender {
+    BOOL on = sender.on;
+    __weak typeof(self) weakSelf = self;
+    KFLog_Normal(YES, @"set left bed alarm");
 }
 
 - (IBAction)alarmEnableValueChanged:(UISwitch *)sender {
