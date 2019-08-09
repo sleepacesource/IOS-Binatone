@@ -189,6 +189,7 @@
         on = self.alarmInfo.enable;
     }
     [self.alarmEnableSwitch setOn:on];
+    [self.leftBedAlarmEnableSwitch setOn:on];
 }
 
 - (void)getAlarmInfo:(CBPeripheral *)sender {
@@ -333,6 +334,15 @@
     BOOL on = sender.on;
     __weak typeof(self) weakSelf = self;
     KFLog_Normal(YES, @"set left bed alarm");
+    [SLPBLESharedManager binatone:SharedDataManager.peripheral setAlarmEnable:on hour:self.alarmInfo.hour minute:self.alarmInfo.minute length:self.alarmInfo.length timeout:0 compeltion:^(SLPDataTransferStatus status, id data) {
+        if (status != SLPDataTransferStatus_Succeed) {
+            [Utils showDeviceOperationFailed:status atViewController:weakSelf];
+            [sender setOn:on];
+        }else{
+            weakSelf.alarmInfo.enable = on;
+            [weakSelf reloadAlarmInfo];
+        }
+    }];
 }
 
 - (IBAction)alarmEnableValueChanged:(UISwitch *)sender {
@@ -344,7 +354,8 @@
             [Utils showDeviceOperationFailed:status atViewController:weakSelf];
             [sender setOn:on];
         }else{
-            self.alarmInfo.enable = on;
+            weakSelf.alarmInfo.enable = on;
+            [weakSelf reloadAlarmInfo];
         }
     }];
 }
@@ -352,4 +363,5 @@
 - (IBAction)alarmTimeEdit:(id)sender {
     [Coordinate pushToAlarmTime:self.alarmInfo sender:self aniamted:YES];
 }
+
 @end
