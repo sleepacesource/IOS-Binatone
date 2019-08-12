@@ -47,9 +47,10 @@ enum {
         return;
     }
     
-    if (![info.name hasPrefix:@"MBP"]) {
-        return;
-    }
+    //蓝牙名称不过滤
+//    if (![info.name hasPrefix:@"MBP"]) {
+//        return;
+//    }
     for (SLPPeripheralInfo *aInfo in self.deviceList) {
         if ([info.name isEqualToString:aInfo.name]) {
             return;

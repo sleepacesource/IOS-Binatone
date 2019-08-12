@@ -100,7 +100,7 @@
     [Utils setButton:self.getMacBtn title:LocalizedString(@"obtain_mac_address")];
     [Utils setButton:self.upgradeBtn title:LocalizedString(@"fireware_update")];
     
-    [self.leftBedAlarmTitleLabel setText:LocalizedString(@"apnea_alert")];
+    [self.leftBedAlarmTitleLabel setText:LocalizedString(@"离床报警开关")];
     [self.alarmTitleLabel setText:LocalizedString(@"apnea_alert")];
     [self.alarmTimeLabel setText:LocalizedString(@"set_alert_switch")];
     [self.alarmTimeIcon setImage:[UIImage imageNamed:@"common_list_icon_leftarrow.png"]];
@@ -162,8 +162,8 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.deviceIDLabel setText:SharedDataManager.deviceID];
-    [self.deviceNameLabel setText:SharedDataManager.deviceName];
+//    [self.deviceIDLabel setText:SharedDataManager.deviceID];
+//    [self.deviceNameLabel setText:SharedDataManager.deviceName];
 }
 
 - (void)addNotificationObservre {
@@ -211,6 +211,10 @@
         NSString *userID = [self.userIDLabel text];
         if (!userID || userID.length == 0) {
             [Utils showAlertTitle:nil message:LocalizedString(@"userid_not_empty") confirmTitle:LocalizedString(@"confirm") atViewController:self];
+            return;
+        }
+        if ([userID hasPrefix:@"0"]) {
+            [Utils showAlertTitle:nil message:LocalizedString(@"userid_error") confirmTitle:LocalizedString(@"confirm") atViewController:self];
             return;
         }
         if (![SLPBLESharedManager blueToothIsOpen]) {

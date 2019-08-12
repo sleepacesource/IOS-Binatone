@@ -88,7 +88,7 @@ enum {
         self.realtimeData.status = RealtimeDataStaus_InBed;
     }
     self.realtimeData.breathRate = data.breathRate;
-    self.realtimeData.heartRate = data.breathRate;
+    self.realtimeData.heartRate = data.heartRate;
     
     [self.tableView reloadData];
 }
