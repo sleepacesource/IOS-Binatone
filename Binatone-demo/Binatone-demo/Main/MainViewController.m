@@ -130,7 +130,7 @@
     
     self.showAlert = YES;
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"出现了呼吸暂停报警，请立即关注" message:nil delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:LocalizedString(@"notice_apnea") message:nil delegate:self cancelButtonTitle:LocalizedString(@"confirm") otherButtonTitles:nil, nil];
     [alert show];
 }
 
@@ -141,7 +141,7 @@
     
     self.showAlert = YES;
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"出现了离床报警，请立即关注" message:nil delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:LocalizedString(@"notice_leaving_bed") message:nil delegate:self cancelButtonTitle:LocalizedString(@"confirm") otherButtonTitles:nil, nil];
     [alert show];
 }
 

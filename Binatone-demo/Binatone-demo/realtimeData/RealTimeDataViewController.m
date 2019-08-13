@@ -55,6 +55,12 @@ enum {
     self.realtimeData = [RealtimeData new];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self showRealtimeButtonOn:SharedDataManager.inRealtime];
+    [self.tableView reloadData];
+}
+
 - (void)setUI {
     [Utils configSectionTitle:self.hour24SectionHeaderTitleLabel];
     [Utils configSectionTitle:self.realtimeSectionHeaderTitleLabel];
@@ -69,6 +75,11 @@ enum {
         title = LocalizedString(@"end_real_data");
     }
     [Utils setButton:self.realtimeButton title:title];
+    
+    CGFloat shellAlpha = SharedDataManager.connected ? 1.0 : 0.3;
+    
+    [self.realtimeButton setAlpha:shellAlpha];
+    [self.realtimeSectionHeader setUserInteractionEnabled:SharedDataManager.connected];
 }
 
 - (void)addNotificationObserver {
@@ -209,6 +220,10 @@ enum {
         [icon setImage:[UIImage imageNamed:@"common_list_icon_leftarrow.png"]];
         cell.accessoryView = icon;
         title = LocalizedString(@"look_24data");
+        
+        [Utils configCellTitleLabel:cell.textLabel];
+        CGFloat shellAlpha = SharedDataManager.connected ? 1.0 : 0.3;
+        [cell.textLabel setTextColor:[UIColor colorWithWhite:0 alpha:shellAlpha]];
     }else {
         cell = [tableView dequeueReusableCellWithIdentifier:identifier2];
         if (!cell) {
@@ -251,9 +266,9 @@ enum {
         [cell.detailTextLabel setTextColor:Theme.C3];
         [cell.detailTextLabel setFont:Theme.T3];
         [cell.detailTextLabel setText:detail];
+        [Utils configCellTitleLabel:cell.textLabel];
     }
     [cell.textLabel setText:title];
-    [Utils configCellTitleLabel:cell.textLabel];
     return cell;
 }
 
@@ -264,7 +279,7 @@ enum {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (indexPath.section == Section_24hourData) {
+    if (indexPath.section == Section_24hourData && SharedDataManager.connected) {
         [self get24HourData];
     }
 }

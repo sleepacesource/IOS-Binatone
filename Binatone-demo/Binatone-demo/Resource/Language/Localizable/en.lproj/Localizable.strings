@@ -68,4 +68,7 @@
 "enter_userid"="Please Enter UserId";
 "obtain_mac_address"="Obtain Mac Address";
 "charging"="Charging";
-
+"initialization"="Initialization";
+"leaving_bed_alert"="Switch On Leaving Bed";
+"notice_leaving_bed"="There is a leaving bed alarm, please pay attention immediately";
+"notice_apnea"="There is a apnea alarm, please pay attention immediately";
