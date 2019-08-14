@@ -32,6 +32,11 @@ enum {
     self.demoData = [DemoData getDemoData];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.tableView reloadData];
+}
+
 #pragma mark UITableViewDelegate UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return Row_Bottom;
@@ -82,8 +87,9 @@ enum {
     
     NSDate *date = [NSDate date];
     NSInteger timestamp = [date timeIntervalSince1970];
+    UInt32 startTime = (UInt32)(timestamp - 24 * 3600 * 7);
     KFLog_Normal(YES, @"get history data");
-    [SLPBLESharedManager binatone:SharedDataManager.peripheral getHistoryData:0 endTime:timestamp sex:0 each:^(NSInteger index, NSInteger count, BinatoneHistoryData *data) {
+    [SLPBLESharedManager binatone:SharedDataManager.peripheral getHistoryData:startTime endTime:timestamp sex:0 each:^(NSInteger index, NSInteger count, BinatoneHistoryData *data) {
         [loadingView setText:[NSString stringWithFormat:@"%ld/%ld", (long)index+1, (long)count]];
     } completion:^(SLPDataTransferStatus status, NSArray<BinatoneHistoryData *> *dataList) {
         KFLog_Normal(YES, @"download history data finished %d",status);

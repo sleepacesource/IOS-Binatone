@@ -209,6 +209,8 @@ typedef NS_ENUM(NSInteger,SLPBLEMessagetUniqTypes) {
     SLPBLEMessagetUniqType_BinatoneSetBirthDate,//设置生日日期
     SLPBLEMessagetUniqType_BinatoneGetAlarm,//获取警报
     SLPBLEMessagetUniqType_BinatoneSetAlarm,//设置警报
+    SLPBLEMessagetUniqType_BinatoneGetLeftBedAlarm,//获取离床警报
+    SLPBLEMessagetUniqType_BinatoneSetLeftBedAlarm,//设置离床警报
     SLPBLEMessagetUniqType_BinatoneGetMAC,//获取mac地址
     SLPBLEMessagetUniqType_BinatoneRestoreFactorySetting,//恢复出厂设置
     
