@@ -70,16 +70,19 @@ enum {
 }
 
 - (void)showRealtimeButtonOn:(BOOL)on {
-    NSString *title = LocalizedString(@"obtain_24data");
-    if (on) {
-        title = LocalizedString(@"end_real_data");
-    }
-    [Utils setButton:self.realtimeButton title:title];
     
     CGFloat shellAlpha = SharedDataManager.connected ? 1.0 : 0.3;
     
     [self.realtimeButton setAlpha:shellAlpha];
     [self.realtimeSectionHeader setUserInteractionEnabled:SharedDataManager.connected];
+    
+    NSString *title = LocalizedString(@"obtain_24data");
+    if (SharedDataManager.connected) {
+        if (on) {
+            title = LocalizedString(@"end_real_data");
+        }
+    }
+    [Utils setButton:self.realtimeButton title:title];
 }
 
 - (void)addNotificationObserver {
@@ -236,15 +239,17 @@ enum {
             case RealtimeDataRow_Status:
             {
                 title = LocalizedString(@"state");
-                switch (status) {
-                    case RealtimeDataStaus_InBed:
-                        detail = LocalizedString(@"in_bed");
-                        break;
-                    case RealtimeDataStaus_OffBed:
-                        detail = LocalizedString(@"left_bed");
-                        break;
-                    default:
-                        break;
+                if (SharedDataManager.inRealtime) {
+                    switch (status) {
+                        case RealtimeDataStaus_InBed:
+                            detail = LocalizedString(@"in_bed");
+                            break;
+                        case RealtimeDataStaus_OffBed:
+                            detail = LocalizedString(@"left_bed");
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
                 break;

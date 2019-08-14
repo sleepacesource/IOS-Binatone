@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5B23BECB21BA48D400081F4A /* MBP89SN_20181204_1.29(v1.1)_Release.des in Resources */ = {isa = PBXBuildFile; fileRef = 5B23BECA21BA48D400081F4A /* MBP89SN_20181204_1.29(v1.1)_Release.des */; };
 		5B2A9AA3212E4E8A0015C210 /* DeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2A9AA1212E4E8A0015C210 /* DeviceViewController.m */; };
 		5B2A9AA4212E4E8A0015C210 /* DeviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B2A9AA2212E4E8A0015C210 /* DeviceViewController.xib */; };
 		5B2A9AA8212E4E9F0015C210 /* RealTimeDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2A9AA6212E4E9F0015C210 /* RealTimeDataViewController.m */; };
@@ -63,10 +62,10 @@
 		5BC958EC2133DCD900827E36 /* VerticalDashView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC958EA2133DCD900827E36 /* VerticalDashView.m */; };
 		5BCFF86E213FCA5E00A5D112 /* DemoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BCFF86D213FCA5E00A5D112 /* DemoData.m */; };
 		A4ED401E22FD649400CB5BFD /* MBP89SN_20190806_1.41(V1.1.4)_Debug.des in Resources */ = {isa = PBXBuildFile; fileRef = A4ED401D22FD648E00CB5BFD /* MBP89SN_20190806_1.41(V1.1.4)_Debug.des */; };
+		A4ED40392303BD4600CB5BFD /* MBP89SN_20190814_1.42(V1.1.4)_Debug.des in Resources */ = {isa = PBXBuildFile; fileRef = A4ED40382303BD4500CB5BFD /* MBP89SN_20190814_1.42(V1.1.4)_Debug.des */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5B23BECA21BA48D400081F4A /* MBP89SN_20181204_1.29(v1.1)_Release.des */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MBP89SN_20181204_1.29(v1.1)_Release.des"; sourceTree = "<group>"; };
 		5B2A9AA0212E4E8A0015C210 /* DeviceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceViewController.h; sourceTree = "<group>"; };
 		5B2A9AA1212E4E8A0015C210 /* DeviceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceViewController.m; sourceTree = "<group>"; };
 		5B2A9AA2212E4E8A0015C210 /* DeviceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceViewController.xib; sourceTree = "<group>"; };
@@ -153,7 +152,8 @@
 		5BC958EA2133DCD900827E36 /* VerticalDashView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerticalDashView.m; sourceTree = "<group>"; };
 		5BCFF86C213FCA5E00A5D112 /* DemoData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoData.h; sourceTree = "<group>"; };
 		5BCFF86D213FCA5E00A5D112 /* DemoData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoData.m; sourceTree = "<group>"; };
-		A4ED401D22FD648E00CB5BFD /* MBP89SN_20190806_1.41(V1.1.4)_Debug.des */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MBP89SN_20190806_1.41(V1.1.4)_Debug.des"; sourceTree = "<group>"; };
+		A4ED401D22FD648E00CB5BFD /* MBP89SN_20190806_1.41(V1.1.4)_Debug.des */ = {isa = PBXFileReference; explicitFileType = compiled; path = "MBP89SN_20190806_1.41(V1.1.4)_Debug.des"; sourceTree = "<group>"; };
+		A4ED40382303BD4500CB5BFD /* MBP89SN_20190814_1.42(V1.1.4)_Debug.des */ = {isa = PBXFileReference; explicitFileType = compiled; fileEncoding = 4; path = "MBP89SN_20190814_1.42(V1.1.4)_Debug.des"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -375,8 +375,8 @@
 		5BA5DD74212CFB240046EFEC /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				A4ED40382303BD4500CB5BFD /* MBP89SN_20190814_1.42(V1.1.4)_Debug.des */,
 				A4ED401D22FD648E00CB5BFD /* MBP89SN_20190806_1.41(V1.1.4)_Debug.des */,
-				5B23BECA21BA48D400081F4A /* MBP89SN_20181204_1.29(v1.1)_Release.des */,
 				5BA5DD76212CFB7D0046EFEC /* Language */,
 				5BA5DD75212CFB5C0046EFEC /* Image */,
 			);
@@ -482,7 +482,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B2A9AA4212E4E8A0015C210 /* DeviceViewController.xib in Resources */,
-				5B23BECB21BA48D400081F4A /* MBP89SN_20181204_1.29(v1.1)_Release.des in Resources */,
 				5BC9589421339FB800827E36 /* common_list_icon_leftarrow@3x.png in Resources */,
 				5BC9589221339FB800827E36 /* common_nav_btn_back_white_nor@2x.png in Resources */,
 				5B3815AA2134EC8B00CC48B8 /* device_btn_refresh_nor@2x.png in Resources */,
@@ -491,6 +490,7 @@
 				5BC9589021339FB800827E36 /* common_list_icon_leftarrow@2x.png in Resources */,
 				5BBCDB072135500900E498E2 /* DatePickerPopUpView.xib in Resources */,
 				A4ED401E22FD649400CB5BFD /* MBP89SN_20190806_1.41(V1.1.4)_Debug.des in Resources */,
+				A4ED40392303BD4600CB5BFD /* MBP89SN_20190814_1.42(V1.1.4)_Debug.des in Resources */,
 				5B2A9AD1212E89780015C210 /* MainViewController.xib in Resources */,
 				5B3815AB2134EC8B00CC48B8 /* device_btn_refresh_nor@3x.png in Resources */,
 				5BC9589121339FB800827E36 /* common_nav_btn_back_nor@2x.png in Resources */,

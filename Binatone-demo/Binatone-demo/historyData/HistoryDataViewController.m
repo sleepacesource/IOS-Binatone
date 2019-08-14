@@ -135,7 +135,7 @@ enum{
             title = LocalizedString(@"data24");
             break;
         case E_HistoryDataType_History:
-            title = LocalizedString(@"history_data");
+            title = LocalizedString(@"Daily_Report");
             break;
         case E_HistoryDataType_Demo:
             title = LocalizedString(@"simulation_data");

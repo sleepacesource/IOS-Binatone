@@ -121,6 +121,7 @@
 //    [self showIndex:0];
 //    [SharedDataManager toInit];
     SharedDataManager.connected = NO;
+    SharedDataManager.inRealtime = NO;
 }
 
 - (void)breathAlarm:(NSNotification *)notfication {

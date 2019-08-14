@@ -10,7 +10,7 @@
 "firmware_info"="Firmware Info";
 "setting"="Settings";
 "time_data"="Real-time Data";
-"history_data"="Historical Data";
+"history_data"="History Data";
 "device_id_clear"="Device ID (clear)";
 "device_id_cipher"="Device ID (cipher)";
 "obtain_electricity"="Obtain Battery";
@@ -72,3 +72,4 @@
 "leaving_bed_alert"="Switch On Leaving Bed";
 "notice_leaving_bed"="There is a leaving bed alarm, please pay attention immediately";
 "notice_apnea"="There is a apnea alarm, please pay attention immediately";
+"Daily_Report"="Daily Report";
