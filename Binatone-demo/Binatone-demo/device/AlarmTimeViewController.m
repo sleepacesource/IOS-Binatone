@@ -131,7 +131,7 @@ enum {
     }
     __weak typeof(self) weakSelf = self;
     KFLog_Normal(YES, @"save alarm");
-    [SLPBLESharedManager binatone:SharedDataManager.peripheral setAlarmEnable:on hour:self.beginTime.hour minute:self.beginTime.minute length:len timeout:0 compeltion:^(SLPDataTransferStatus status, id data) {
+    [SLPBLESharedManager binatone:SharedDataManager.peripheral setApneaAlarmEnable:on hour:self.beginTime.hour minute:self.beginTime.minute length:len timeout:0 compeltion:^(SLPDataTransferStatus status, id data) {
         if (status != SLPDataTransferStatus_Succeed) {
             [Utils showDeviceOperationFailed:status atViewController:weakSelf];
         }else{

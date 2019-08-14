@@ -68,4 +68,8 @@
 "enter_userid"="请输入UserId";
 "obtain_mac_address"="获取Mac地址";
 "charging"="充电中";
-
+"initialization"="初始化";
+"leaving_bed_alert"="离床报警开关";
+"notice_leaving_bed"="出现了离床报警，请立即关注";
+"notice_apnea"="出现了呼吸暂停报警，请立即关注";
+"Daily_Report"="日报告";

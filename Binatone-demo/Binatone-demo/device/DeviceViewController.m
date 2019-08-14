@@ -50,6 +50,7 @@
 @property (nonatomic, weak) IBOutlet UIView *alarmTimeDownLine;
 
 @property (nonatomic, strong) BinatoneAlarm *alarmInfo;
+@property (nonatomic, strong) BinatoneAlarm *leftBedAlarmInfo;
 @property (nonatomic, assign) BOOL connected;
 @end
 
@@ -64,6 +65,12 @@
     self.alarmInfo.hour = 22;
     self.alarmInfo.minute = 0;
     self.alarmInfo.length = 600;
+    
+    self.leftBedAlarmInfo = [BinatoneAlarm new];
+    self.leftBedAlarmInfo.enable = NO;
+    self.leftBedAlarmInfo.hour = 22;
+    self.leftBedAlarmInfo.minute = 0;
+    self.leftBedAlarmInfo.length = 600;
     
     [self setUI];
     [self addNotificationObservre];
@@ -100,7 +107,7 @@
     [Utils setButton:self.getMacBtn title:LocalizedString(@"obtain_mac_address")];
     [Utils setButton:self.upgradeBtn title:LocalizedString(@"fireware_update")];
     
-    [self.leftBedAlarmTitleLabel setText:LocalizedString(@"离床报警开关")];
+    [self.leftBedAlarmTitleLabel setText:LocalizedString(@"leaving_bed_alert")];
     [self.alarmTitleLabel setText:LocalizedString(@"apnea_alert")];
     [self.alarmTimeLabel setText:LocalizedString(@"set_alert_switch")];
     [self.alarmTimeIcon setImage:[UIImage imageNamed:@"common_list_icon_leftarrow.png"]];
@@ -149,10 +156,11 @@
     [self.settingShell setUserInteractionEnabled:connected];
     
     if (!connected) {
-        [self.deviceNameLabel setText:nil];
-        [self.deviceIDLabel setText:nil];
-        [self.batteryLabel setText:nil];
-        [self.firmwareVersionLabel setText:nil];
+        [self.deviceNameLabel setText:@""];
+        [self.deviceIDLabel setText:@""];
+        [self.batteryLabel setText:@""];
+        [self.firmwareVersionLabel setText:@""];
+        [self.macLabel setText:@""];
         [Utils setButton:self.connectBtn title:LocalizedString(@"connect_device")];
     }else{
         [Utils setButton:self.connectBtn title:LocalizedString(@"disconnect")];
@@ -164,12 +172,24 @@
     [super viewDidAppear:animated];
 //    [self.deviceIDLabel setText:SharedDataManager.deviceID];
 //    [self.deviceNameLabel setText:SharedDataManager.deviceName];
+    [self showConnected:SharedDataManager.connected];
+    
+    [self updateAlarmInfo];
+    if (SharedDataManager.connected) {
+        [self leftBedAlarmEnableValueChanged:self.leftBedAlarmEnableSwitch];
+    }
 }
 
 - (void)addNotificationObservre {
     NSNotificationCenter *notificationCeter = [NSNotificationCenter defaultCenter];
     [notificationCeter addObserver:self selector:@selector(deviceConnected:) name:kNotificationNameBLEDeviceConnected object:nil];
     [notificationCeter addObserver:self selector:@selector(deviceDisconnected:) name:kNotificationNameBLEDeviceDisconnect object:nil];
+}
+
+- (void)updateAlarmInfo {
+    self.leftBedAlarmInfo.hour = self.alarmInfo.hour;
+    self.leftBedAlarmInfo.minute = self.alarmInfo.minute;
+    self.leftBedAlarmInfo.length = self.alarmInfo.length;
 }
 
 - (void)deviceConnected:(NSNotification *)notification {
@@ -189,14 +209,29 @@
         on = self.alarmInfo.enable;
     }
     [self.alarmEnableSwitch setOn:on];
+    
+    on = NO;
+    if (self.leftBedAlarmInfo) {
+        on = self.leftBedAlarmInfo.enable;
+    }
     [self.leftBedAlarmEnableSwitch setOn:on];
 }
 
 - (void)getAlarmInfo:(CBPeripheral *)sender {
     __weak typeof(self) weakSelf = self;
-    [SLPBLESharedManager binatone:sender getAlarmTimeout:0 compeltion:^(SLPDataTransferStatus status, id data) {
+    [SLPBLESharedManager binatone:sender getApneaAlarmTimeOut:0 compeltion:^(SLPDataTransferStatus status, id data) {
         if (status == SLPDataTransferStatus_Succeed) {
             weakSelf.alarmInfo = data;
+            [weakSelf reloadAlarmInfo];
+        }
+    }];
+}
+
+- (void)getLeftBedAlarmInfo:(CBPeripheral *)sender {
+    __weak typeof(self) weakSelf = self;
+    [SLPBLESharedManager binatone:sender getLeftBedAlarmTimeOut:0 compeltion:^(SLPDataTransferStatus status, id data) {
+        if (status == SLPDataTransferStatus_Succeed) {
+            weakSelf.leftBedAlarmInfo = data;
             [weakSelf reloadAlarmInfo];
         }
     }];
@@ -227,7 +262,8 @@
 }
 
 - (IBAction)getDeviceNameClicked:(id)sender {
-    
+    NSString *deviceName = SharedDataManager.deviceName;
+    [self.deviceNameLabel setText:deviceName];
 }
 
 - (IBAction)getDeviceIDClicked:(id)sender {
@@ -291,35 +327,35 @@
     }];
 }
 
-- (void)testRestoreFactorySetting {
-    __weak typeof(self) weakSelf = self;
-    SLPBLEManager *manager = SLPBLESharedManager;
-    CBPeripheral *peripheral = SharedDataManager.peripheral;
-    [manager binatone:peripheral setAlarmEnable:YES hour:11 minute:11 length:600 timeout:0 compeltion:^(SLPDataTransferStatus status, id data) {
-        [manager binatone:peripheral setBirthYear:2013 month:5 day:22 timeout:0 compeltion:^(SLPDataTransferStatus status, id data) {
-            [manager binatone:peripheral restoreFactorySettingsTimeout:0 completion:^(SLPDataTransferStatus status, id data) {
-                [manager binatone:peripheral getAlarmTimeout:0 compeltion:^(SLPDataTransferStatus status, id data) {
-                    BinatoneAlarm *alarm = data;
-                    [manager binatone:peripheral getBirthDateTimeout:0 compeltion:^(SLPDataTransferStatus status, id data) {
-                        BinatoneBirthDate *birth = data;
-                        NSString *alarmDescription = [NSString stringWithFormat:@"alarmInfo:\benable:%d\nhour:%d\nminute:%d\nlength:%d\n",alarm.enable,alarm.hour,alarm.minute,alarm.length];
-                        NSString *birthInfo = [NSString stringWithFormat:@"birth:\nyear:%d\nmonth:%d\nday:%d\n",birth.year,birth.month,birth.day];
-                        NSString *description = [NSString stringWithFormat:@"%@%@",alarmDescription, birthInfo];
-                        [Utils showAlertTitle:nil message:description confirmTitle:LocalizedString(@"confirm") atViewController:weakSelf];
-                    }];
-                }];
-            }];
-        }];
-    }];
-}
+//- (void)testRestoreFactorySetting {
+//    __weak typeof(self) weakSelf = self;
+//    SLPBLEManager *manager = SLPBLESharedManager;
+//    CBPeripheral *peripheral = SharedDataManager.peripheral;
+//    [manager binatone:peripheral setAlarmEnable:YES hour:11 minute:11 length:600 timeout:0 compeltion:^(SLPDataTransferStatus status, id data) {
+//        [manager binatone:peripheral setBirthYear:2013 month:5 day:22 timeout:0 compeltion:^(SLPDataTransferStatus status, id data) {
+//            [manager binatone:peripheral restoreFactorySettingsTimeout:0 completion:^(SLPDataTransferStatus status, id data) {
+//                [manager binatone:peripheral getAlarmTimeout:0 compeltion:^(SLPDataTransferStatus status, id data) {
+//                    BinatoneAlarm *alarm = data;
+//                    [manager binatone:peripheral getBirthDateTimeout:0 compeltion:^(SLPDataTransferStatus status, id data) {
+//                        BinatoneBirthDate *birth = data;
+//                        NSString *alarmDescription = [NSString stringWithFormat:@"alarmInfo:\benable:%d\nhour:%d\nminute:%d\nlength:%d\n",alarm.enable,alarm.hour,alarm.minute,alarm.length];
+//                        NSString *birthInfo = [NSString stringWithFormat:@"birth:\nyear:%d\nmonth:%d\nday:%d\n",birth.year,birth.month,birth.day];
+//                        NSString *description = [NSString stringWithFormat:@"%@%@",alarmDescription, birthInfo];
+//                        [Utils showAlertTitle:nil message:description confirmTitle:LocalizedString(@"confirm") atViewController:weakSelf];
+//                    }];
+//                }];
+//            }];
+//        }];
+//    }];
+//}
 
 - (IBAction)upgradeClicked:(id)sender {
     KFLog_Normal(YES, @"upgrade");
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"MBP89SN_20190806_1.41(V1.1.4)_Debug" ofType:@"des"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"MBP89SN_20190814_1.42(V1.1.4)_Debug" ofType:@"des"];
     NSData *data = [NSData dataWithContentsOfFile:path];
     __weak typeof(self) weakSelf = self;
     SLPLoadingBlockView *loadingView = [self showLoadingView];
-    [SLPBLESharedManager binatone:SharedDataManager.peripheral upgradeDeviceWithCrcDes:(long)1671192570 crcBin:(long)2707569021 upgradePackage:data callback:^(SLPDataTransferStatus status, id data) {
+    [SLPBLESharedManager binatone:SharedDataManager.peripheral upgradeDeviceWithCrcDes:(long)1261788337 crcBin:(long)2224788989 upgradePackage:data callback:^(SLPDataTransferStatus status, id data) {
         if (status != SLPDataTransferStatus_Succeed){
             [weakSelf unshowLoadingView];
             [Utils showAlertTitle:nil message:LocalizedString(@"up_failed") confirmTitle:LocalizedString(@"confirm") atViewController:weakSelf];
@@ -338,12 +374,12 @@
     BOOL on = sender.on;
     __weak typeof(self) weakSelf = self;
     KFLog_Normal(YES, @"set left bed alarm");
-    [SLPBLESharedManager binatone:SharedDataManager.peripheral setAlarmEnable:on hour:self.alarmInfo.hour minute:self.alarmInfo.minute length:self.alarmInfo.length timeout:0 compeltion:^(SLPDataTransferStatus status, id data) {
+    [SLPBLESharedManager binatone:SharedDataManager.peripheral setLeftBedAlarmEnable:on hour:self.leftBedAlarmInfo.hour minute:self.leftBedAlarmInfo.minute length:self.leftBedAlarmInfo.length timeout:0 compeltion:^(SLPDataTransferStatus status, id data) {
         if (status != SLPDataTransferStatus_Succeed) {
             [Utils showDeviceOperationFailed:status atViewController:weakSelf];
             [sender setOn:on];
         }else{
-            weakSelf.alarmInfo.enable = on;
+            weakSelf.leftBedAlarmInfo.enable = on;
             [weakSelf reloadAlarmInfo];
         }
     }];
@@ -353,7 +389,7 @@
     BOOL on = sender.on;
     __weak typeof(self) weakSelf = self;
     KFLog_Normal(YES, @"set alarm");
-    [SLPBLESharedManager binatone:SharedDataManager.peripheral setAlarmEnable:on hour:self.alarmInfo.hour minute:self.alarmInfo.minute length:self.alarmInfo.length timeout:0 compeltion:^(SLPDataTransferStatus status, id data) {
+    [SLPBLESharedManager binatone:SharedDataManager.peripheral setApneaAlarmEnable:on hour:self.alarmInfo.hour minute:self.alarmInfo.minute length:self.alarmInfo.length timeout:0 compeltion:^(SLPDataTransferStatus status, id data) {
         if (status != SLPDataTransferStatus_Succeed) {
             [Utils showDeviceOperationFailed:status atViewController:weakSelf];
             [sender setOn:on];
