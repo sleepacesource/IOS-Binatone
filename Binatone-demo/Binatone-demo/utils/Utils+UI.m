@@ -101,7 +101,6 @@
     UIAlertAction *action = [UIAlertAction actionWithTitle:confirmTitle style:UIAlertActionStyleDefault handler:nil];
     [alertController addAction:action];
     [viewController presentViewController:alertController animated:YES completion:nil];
-    
 }
 
 + (void)showDeviceOperationFailed:(NSInteger)status atViewController:(UIViewController *)viewController{

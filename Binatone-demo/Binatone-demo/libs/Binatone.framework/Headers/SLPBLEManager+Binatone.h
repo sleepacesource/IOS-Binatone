@@ -100,7 +100,6 @@
 - (void)binatone:(CBPeripheral *)peripheral setApneaAlarmEnable:(BOOL)enable hour:(int)hour minute:(int)minute length:(int)length
          timeout:(CGFloat)timeout compeltion:(SLPTransforCallback)handle;
 
-
 /**
  获取离床警报
  
@@ -133,7 +132,6 @@
  */
 - (void)binatone:(CBPeripheral *)peripheral getMACAddressTimeout:(CGFloat)timeout compeltion:(SLPTransforCallback)handle;
 
-
 /**
  恢复出厂设置
 
@@ -165,7 +163,6 @@
 upgradePackage:(NSData *)package
       callback:(SLPTransforCallback)handle;
 
-
 /**
  获取最近24小时历史数据
 
@@ -175,8 +172,6 @@ upgradePackage:(NSData *)package
  @param handle 历史数据返回句柄 回调返回data: BinatoneHistoryData
  */
 - (void)binatone:(CBPeripheral *)peripheral getLast24HourData:(NSInteger)currentTime sex:(int)sex callback:(SLPTransforCallback)handle;
-
-
 
 /**
  同步历史数据
@@ -192,4 +187,5 @@ upgradePackage:(NSData *)package
  @param completion 历史数据下载完成返回
  */
 - (void)binatone:(CBPeripheral *)peripheral getHistoryData:(NSInteger)startTime endTime:(NSInteger)endTime sex:(int)sex each:(void(^)(NSInteger index, NSInteger count, BinatoneHistoryData *data))eachHandle completion:(void(^)(SLPDataTransferStatus status, NSArray<BinatoneHistoryData *> *dataList))completion;
+
 @end
