@@ -78,17 +78,17 @@
       compeltion:(SLPTransforCallback)handle;
 
 /**
- 获取警报
+ 获取呼吸暂停警报
  
  @param peripheral 蓝牙句柄
  @param timeout 超时
  @param handle 返回BinatoneAlarm
  */
-- (void)binatone:(CBPeripheral *)peripheral getAlarmTimeout:(CGFloat)timeout
+- (void)binatone:(CBPeripheral *)peripheral getApneaAlarmTimeOut:(CGFloat)timeout
       compeltion:(SLPTransforCallback)handle;
 
 /**
- 设置警报
+ 设置呼吸暂停警报
  
  @param peripheral 蓝牙句柄
  @param enable 是否打开
@@ -97,9 +97,31 @@
  @param timeout 超时
  @param handle 返回
  */
-- (void)binatone:(CBPeripheral *)peripheral setAlarmEnable:(BOOL)enable hour:(int)hour minute:(int)minute length:(int)length
+- (void)binatone:(CBPeripheral *)peripheral setApneaAlarmEnable:(BOOL)enable hour:(int)hour minute:(int)minute length:(int)length
          timeout:(CGFloat)timeout compeltion:(SLPTransforCallback)handle;
 
+/**
+ 获取离床警报
+ 
+ @param peripheral 蓝牙句柄
+ @param timeout 超时
+ @param handle 返回BinatoneAlarm
+ */
+- (void)binatone:(CBPeripheral *)peripheral getLeftBedAlarmTimeOut:(CGFloat)timeout
+      compeltion:(SLPTransforCallback)handle;
+
+/**
+ 设置离床警报
+ 
+ @param peripheral 蓝牙句柄
+ @param enable 是否打开
+ @param hour 小时
+ @param minute 分钟
+ @param timeout 超时
+ @param handle 返回
+ */
+- (void)binatone:(CBPeripheral *)peripheral setLeftBedAlarmEnable:(BOOL)enable hour:(int)hour minute:(int)minute length:(int)length
+         timeout:(CGFloat)timeout compeltion:(SLPTransforCallback)handle;
 
 /**
  获取mac地址
@@ -109,7 +131,6 @@
  @param handle 返回BinatoneMAC
  */
 - (void)binatone:(CBPeripheral *)peripheral getMACAddressTimeout:(CGFloat)timeout compeltion:(SLPTransforCallback)handle;
-
 
 /**
  恢复出厂设置
@@ -142,7 +163,6 @@
 upgradePackage:(NSData *)package
       callback:(SLPTransforCallback)handle;
 
-
 /**
  获取最近24小时历史数据
 
@@ -152,8 +172,6 @@ upgradePackage:(NSData *)package
  @param handle 历史数据返回句柄 回调返回data: BinatoneHistoryData
  */
 - (void)binatone:(CBPeripheral *)peripheral getLast24HourData:(NSInteger)currentTime sex:(int)sex callback:(SLPTransforCallback)handle;
-
-
 
 /**
  同步历史数据
@@ -169,4 +187,5 @@ upgradePackage:(NSData *)package
  @param completion 历史数据下载完成返回
  */
 - (void)binatone:(CBPeripheral *)peripheral getHistoryData:(NSInteger)startTime endTime:(NSInteger)endTime sex:(int)sex each:(void(^)(NSInteger index, NSInteger count, BinatoneHistoryData *data))eachHandle completion:(void(^)(SLPDataTransferStatus status, NSArray<BinatoneHistoryData *> *dataList))completion;
+
 @end
