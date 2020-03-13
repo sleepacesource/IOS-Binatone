@@ -351,11 +351,11 @@
 
 - (IBAction)upgradeClicked:(id)sender {
     KFLog_Normal(YES, @"upgrade");
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"MBP89SN_20191008_1.43(V1.1.4)_Debug" ofType:@"des"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"MBP89SN_20200313_1.44(V1.1.4)_Release" ofType:@"des"];
     NSData *data = [NSData dataWithContentsOfFile:path];
     __weak typeof(self) weakSelf = self;
     SLPLoadingBlockView *loadingView = [self showLoadingView];
-    [SLPBLESharedManager binatone:SharedDataManager.peripheral upgradeDeviceWithCrcDes:(long)3663185237 crcBin:(long)846064980 upgradePackage:data callback:^(SLPDataTransferStatus status, id data) {
+    [SLPBLESharedManager binatone:SharedDataManager.peripheral upgradeDeviceWithCrcDes:(long)2522805677 crcBin:(long)738553443 upgradePackage:data callback:^(SLPDataTransferStatus status, id data) {
         if (status != SLPDataTransferStatus_Succeed){
             [weakSelf unshowLoadingView];
             [Utils showAlertTitle:nil message:LocalizedString(@"up_failed") confirmTitle:LocalizedString(@"confirm") atViewController:weakSelf];
