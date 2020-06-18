@@ -171,6 +171,16 @@ enum {
         }
         [weakSelf unshowLoadingView];
     }];
+    
+    
+//    [SLPBLESharedManager binatone:SharedDataManager.peripheral getLast24HourData:timestamp sex:1 callback:^(SLPDataTransferStatus status, id data) {
+//        if (status == SLPDataTransferStatus_Succeed) {
+//            [Coordinate pushToHistoryData:data type:E_HistoryDataType_24HourData sender:weakSelf animated:YES];
+//        }else{
+//            [Utils showDeviceOperationFailed:status atViewController:weakSelf];
+//        }
+//        [weakSelf unshowLoadingView];
+//    }];
 }
 
 #pragma mark UITableViewDelegate UITableViewDataSource

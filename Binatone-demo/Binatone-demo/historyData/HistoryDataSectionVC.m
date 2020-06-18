@@ -89,9 +89,10 @@ enum {
     NSInteger timestamp = [date timeIntervalSince1970];
     UInt32 startTime = (UInt32)(timestamp - 24 * 3600 * 7);
     KFLog_Normal(YES, @"get history data");
-    [SLPBLESharedManager binatone:SharedDataManager.peripheral getHistoryData:startTime endTime:timestamp sex:0 each:^(NSInteger index, NSInteger count, BinatoneHistoryData *data) {
+    
+    [SLPBLESharedManager binatone:SharedDataManager.peripheral getHistoryData:startTime endTime:timestamp sex:0 each:^(NSInteger index, NSInteger count, BinatoneHistoryData *data, BinatoneOriginalData *originalData) {
         [loadingView setText:[NSString stringWithFormat:@"%ld/%ld", (long)index+1, (long)count]];
-    } completion:^(SLPDataTransferStatus status, NSArray<BinatoneHistoryData *> *dataList) {
+    } completion:^(SLPDataTransferStatus status, NSArray<BinatoneHistoryData *> *dataList, NSArray<BinatoneOriginalData *> *originalDataList) {
         KFLog_Normal(YES, @"download history data finished %d",status);
         [weakSelf unshowLoadingView];
         BinatoneHistoryData *data = [dataList lastObject];
@@ -101,6 +102,19 @@ enum {
             [Utils showAlertTitle:nil message:LocalizedString(@"sync_falied") confirmTitle:LocalizedString(@"confirm") atViewController:weakSelf];
         }
     }];
+    
+//    [SLPBLESharedManager binatone:SharedDataManager.peripheral getHistoryData:startTime endTime:timestamp sex:0 each:^(NSInteger index, NSInteger count, BinatoneHistoryData *data) {
+//        [loadingView setText:[NSString stringWithFormat:@"%ld/%ld", (long)index+1, (long)count]];
+//    } completion:^(SLPDataTransferStatus status, NSArray<BinatoneHistoryData *> *dataList) {
+//        KFLog_Normal(YES, @"download history data finished %d",status);
+//        [weakSelf unshowLoadingView];
+//        BinatoneHistoryData *data = [dataList lastObject];
+//        if (data) {
+//            [Coordinate pushToHistoryData:data type:E_HistoryDataType_History sender:weakSelf animated:YES];
+//        }else if (status != SLPDataTransferStatus_Succeed) {
+//            [Utils showAlertTitle:nil message:LocalizedString(@"sync_falied") confirmTitle:LocalizedString(@"confirm") atViewController:weakSelf];
+//        }
+//    }];
 }
 
 - (void)goToDemo {

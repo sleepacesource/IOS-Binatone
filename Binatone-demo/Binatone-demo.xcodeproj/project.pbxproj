@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C6F8C63241F081A001BF398 /* MBP89SN_20200313_1.44(V1.1.4)_Release.des in Resources */ = {isa = PBXBuildFile; fileRef = 4C6F8C62241F081A001BF398 /* MBP89SN_20200313_1.44(V1.1.4)_Release.des */; };
 		5B2A9AA3212E4E8A0015C210 /* DeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2A9AA1212E4E8A0015C210 /* DeviceViewController.m */; };
 		5B2A9AA4212E4E8A0015C210 /* DeviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B2A9AA2212E4E8A0015C210 /* DeviceViewController.xib */; };
 		5B2A9AA8212E4E9F0015C210 /* RealTimeDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2A9AA6212E4E9F0015C210 /* RealTimeDataViewController.m */; };
@@ -62,10 +61,10 @@
 		5BC958EB2133DCD900827E36 /* HorizontalDashLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC958E92133DCD900827E36 /* HorizontalDashLine.m */; };
 		5BC958EC2133DCD900827E36 /* VerticalDashView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC958EA2133DCD900827E36 /* VerticalDashView.m */; };
 		5BCFF86E213FCA5E00A5D112 /* DemoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BCFF86D213FCA5E00A5D112 /* DemoData.m */; };
+		A4274C73241F0E16003D4EA9 /* MBP89SN_20200313_1.44(V1.1.4)_Release.des in Resources */ = {isa = PBXBuildFile; fileRef = A4274C72241F0E16003D4EA9 /* MBP89SN_20200313_1.44(V1.1.4)_Release.des */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4C6F8C62241F081A001BF398 /* MBP89SN_20200313_1.44(V1.1.4)_Release.des */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MBP89SN_20200313_1.44(V1.1.4)_Release.des"; sourceTree = "<group>"; };
 		5B2A9AA0212E4E8A0015C210 /* DeviceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceViewController.h; sourceTree = "<group>"; };
 		5B2A9AA1212E4E8A0015C210 /* DeviceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceViewController.m; sourceTree = "<group>"; };
 		5B2A9AA2212E4E8A0015C210 /* DeviceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceViewController.xib; sourceTree = "<group>"; };
@@ -152,6 +151,7 @@
 		5BC958EA2133DCD900827E36 /* VerticalDashView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerticalDashView.m; sourceTree = "<group>"; };
 		5BCFF86C213FCA5E00A5D112 /* DemoData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoData.h; sourceTree = "<group>"; };
 		5BCFF86D213FCA5E00A5D112 /* DemoData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoData.m; sourceTree = "<group>"; };
+		A4274C72241F0E16003D4EA9 /* MBP89SN_20200313_1.44(V1.1.4)_Release.des */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MBP89SN_20200313_1.44(V1.1.4)_Release.des"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -373,7 +373,7 @@
 		5BA5DD74212CFB240046EFEC /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				4C6F8C62241F081A001BF398 /* MBP89SN_20200313_1.44(V1.1.4)_Release.des */,
+				A4274C72241F0E16003D4EA9 /* MBP89SN_20200313_1.44(V1.1.4)_Release.des */,
 				5BA5DD76212CFB7D0046EFEC /* Language */,
 				5BA5DD75212CFB5C0046EFEC /* Image */,
 			);
@@ -494,7 +494,7 @@
 				5BC9589321339FB800827E36 /* common_nav_btn_back_white_nor@3x.png in Resources */,
 				5BBCDB0221354EC100E498E2 /* PopUpView.xib in Resources */,
 				5BA5DD86212CFC880046EFEC /* InfoPlist.strings in Resources */,
-				4C6F8C63241F081A001BF398 /* MBP89SN_20200313_1.44(V1.1.4)_Release.des in Resources */,
+				A4274C73241F0E16003D4EA9 /* MBP89SN_20200313_1.44(V1.1.4)_Release.des in Resources */,
 				5BC958AD2133D23D00827E36 /* HistoryDataView.xib in Resources */,
 				5BC9588F21339FB800827E36 /* common_nav_btn_back_nor@3x.png in Resources */,
 				5BA5DD80212CFC000046EFEC /* Localizable.strings in Resources */,

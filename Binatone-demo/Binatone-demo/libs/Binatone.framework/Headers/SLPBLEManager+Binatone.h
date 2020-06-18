@@ -16,6 +16,7 @@
 #import "BinatoneAlarm.h"
 #import "BinatoneHistoryData.h"
 #import "BinatoneMAC.h"
+#import "BinatoneOriginalData.h"
 
 @interface SLPBLEManager (Binatone)
 
@@ -174,6 +175,16 @@ upgradePackage:(NSData *)package
 - (void)binatone:(CBPeripheral *)peripheral getLast24HourData:(NSInteger)currentTime sex:(int)sex callback:(SLPTransforCallback)handle;
 
 /**
+ 获取最近24小时历史数据(原始数据)
+
+ @param peripheral 蓝牙句柄
+ @param currentTime 结束时间 （获取当前往前24小时的数据）
+ @param sex 性别 (0:女 1：男)
+ @param handle 历史数据返回句柄 回调返回data: BinatoneOriginalData
+ */
+- (void)binatone:(CBPeripheral *)peripheral getLast24HourOriginalData:(NSInteger)currentTime sex:(int)sex callback:(SLPTransforCallback)handle;
+
+/**
  同步历史数据
 
  @param peripheral 蓝牙句柄
@@ -184,8 +195,8 @@ upgradePackage:(NSData *)package
  NSInteger index :这条数据的序号
  NSInteger count :本次数据下载的总条数
  BinatoneHistoryData *data :该条历史数据
+ BinatoneOriginalData *originalData :该条历史数据的原始数据
  @param completion 历史数据下载完成返回
  */
-- (void)binatone:(CBPeripheral *)peripheral getHistoryData:(NSInteger)startTime endTime:(NSInteger)endTime sex:(int)sex each:(void(^)(NSInteger index, NSInteger count, BinatoneHistoryData *data))eachHandle completion:(void(^)(SLPDataTransferStatus status, NSArray<BinatoneHistoryData *> *dataList))completion;
-
+- (void)binatone:(CBPeripheral *)peripheral getHistoryData:(NSInteger)startTime endTime:(NSInteger)endTime sex:(int)sex each:(void(^)(NSInteger index, NSInteger count, BinatoneHistoryData *data, BinatoneOriginalData *originalData))eachHandle completion:(void(^)(SLPDataTransferStatus status, NSArray<BinatoneHistoryData *> *dataList, NSArray<BinatoneOriginalData *> *originalDataList))completion;
 @end
