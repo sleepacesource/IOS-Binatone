@@ -93,7 +93,8 @@ enum {
     [SLPBLESharedManager binatone:SharedDataManager.peripheral getHistoryData:startTime endTime:timestamp sex:0 each:^(NSInteger index, NSInteger count, BinatoneHistoryData *data, BinatoneOriginalData *originalData) {
         [loadingView setText:[NSString stringWithFormat:@"%ld/%ld", (long)index+1, (long)count]];
     } completion:^(SLPDataTransferStatus status, NSArray<BinatoneHistoryData *> *dataList, NSArray<BinatoneOriginalData *> *originalDataList) {
-        KFLog_Normal(YES, @"download history data finished %d",status);
+        KFLog_Normal(YES, @"download history data finished %ld",(long)status);
+        NSLog(@"originalDataList === %@",[weakSelf originalDataListWith:[originalDataList lastObject]]);
         [weakSelf unshowLoadingView];
         BinatoneHistoryData *data = [dataList lastObject];
         if (data) {
@@ -115,6 +116,36 @@ enum {
 //            [Utils showAlertTitle:nil message:LocalizedString(@"sync_falied") confirmTitle:LocalizedString(@"confirm") atViewController:weakSelf];
 //        }
 //    }];
+}
+
+- (NSArray *)originalDataListWith:(BinatoneOriginalData *)data
+{
+    NSMutableArray *array = [NSMutableArray array];
+    
+    NSMutableArray *brArr = [NSMutableArray array];
+    NSMutableArray *hrArr = [NSMutableArray array];
+    NSMutableArray *statusArr = [NSMutableArray array];
+    NSMutableArray *statusValueArr = [NSMutableArray array];
+
+    NSArray *recordList = data.recordList;
+    
+    NSInteger count = recordList.count;
+    
+    for (int i = 0; i < count; i++) {
+        BinatoneHistoryDataRecord *record = [recordList objectAtIndex:i];
+        
+        [brArr addObject:[NSString stringWithFormat:@"%d",record.br]];
+        [hrArr addObject:[NSString stringWithFormat:@"%d",record.hr]];
+        [statusArr addObject:[NSString stringWithFormat:@"%d",record.status]];
+        [statusValueArr addObject:[NSString stringWithFormat:@"%d",record.statusValue]];
+    }
+    
+    [array addObject:brArr];
+    [array addObject:hrArr];
+    [array addObject:statusArr];
+    [array addObject:statusValueArr];
+    
+    return array;
 }
 
 - (void)goToDemo {
