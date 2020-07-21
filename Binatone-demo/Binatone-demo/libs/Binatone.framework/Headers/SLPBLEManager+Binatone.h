@@ -23,7 +23,7 @@
 
 /**
  获取SDK版本号
-
+ 
  @return SDK版本号
  */
 - (NSString *)binatoneGetSDKVersion;
@@ -37,7 +37,7 @@
 - (void)binatone:(CBPeripheral *)peripheral loginWithDeviceName:(NSString *)deviceName
           userId:(NSInteger)userId time:(NSInteger)time timezone:(NSInteger)timezone
        DSTOffset:(NSInteger)DSTOffset
-      callback:(SLPTransforCallback)handle;
+        callback:(SLPTransforCallback)handle;
 
 /*获取设备信息
  回调返回BinatoneDeviceInfo
@@ -48,13 +48,13 @@
  回调返回 BinatoneBatteryInfo
  */
 - (void)binatone:(CBPeripheral *)peripheral getBatteryWithTimeout:(CGFloat)timeout
-      callback:(SLPTransforCallback)handle;
+        callback:(SLPTransforCallback)handle;
 
 /*获取设备版本信息
  回调返回 BinatoneDeviceVersion
  */
 - (void)binatone:(CBPeripheral *)peripheral getDeviceVersionWithTimeout:(CGFloat)timeout
-      callback:(SLPTransforCallback)handle;
+        callback:(SLPTransforCallback)handle;
 
 /**
  获取出生日期
@@ -126,7 +126,7 @@
 
 /**
  获取mac地址
-
+ 
  @param peripheral 蓝牙句柄
  @param timeout 超时
  @param handle 返回BinatoneMAC
@@ -135,7 +135,7 @@
 
 /**
  恢复出厂设置
-
+ 
  @param peripheral 蓝牙句柄
  @param timeout 超时
  @param handle 返回
@@ -145,13 +145,13 @@
 /*开始查看实时数据
  */
 - (void)binatone:(CBPeripheral *)peripheral startRealTimeDataWithTimeout:(CGFloat)timeout
-      callback:(SLPTransforCallback)handle;
+        callback:(SLPTransforCallback)handle;
 
 /*结束查看实时数据
  实时数据通过通知kNotificationNameBinatoneRealtimeData 广播出<kNotificationPostData:BinatoneRealTimeData>
  */
 - (void)binatone:(CBPeripheral *)peripheral stopRealTimeDataWithTimeout:(CGFloat)timeout
-      callback:(SLPTransforCallback)handle;
+        callback:(SLPTransforCallback)handle;
 
 /*升级
  crcDes:加密包CRC32
@@ -160,13 +160,13 @@
  回调返回 BinatoneUpgradeInfo
  */
 - (void)binatone:(CBPeripheral *)peripheral upgradeDeviceWithCrcDes:(long)crcDes
-        crcBin:(long)crcBin
-upgradePackage:(NSData *)package
-      callback:(SLPTransforCallback)handle;
+          crcBin:(long)crcBin
+  upgradePackage:(NSData *)package
+        callback:(SLPTransforCallback)handle;
 
 /**
  获取最近24小时历史数据
-
+ 
  @param peripheral 蓝牙句柄
  @param currentTime 结束时间 （获取当前往前24小时的数据）
  @param sex 性别 (0:女 1：男)
@@ -174,19 +174,28 @@ upgradePackage:(NSData *)package
  */
 - (void)binatone:(CBPeripheral *)peripheral getLast24HourData:(NSInteger)currentTime sex:(int)sex callback:(SLPTransforCallback)handle;
 
+
 /**
  获取最近24小时历史数据(原始数据)
-
+ 
  @param peripheral 蓝牙句柄
  @param currentTime 结束时间 （获取当前往前24小时的数据）
- @param sex 性别 (0:女 1：男)
- @param handle 历史数据返回句柄 回调返回data: BinatoneOriginalData
+ @param handle 历史数据返回句柄 回调返回原始数据data: BinatoneOriginalData
  */
-- (void)binatone:(CBPeripheral *)peripheral getLast24HourOriginalData:(NSInteger)currentTime sex:(int)sex callback:(SLPTransforCallback)handle;
+- (void)binatone:(CBPeripheral *)peripheral getLast24HourOriginalData:(NSInteger)currentTime callback:(SLPTransforCallback)handle;
+
+/**
+ 通过原始数据得到分析结果数据
+ @param originalData 传入原始数据对象
+ @param sex 性别 (0:女 1：男)
+ BinatoneOriginalData 原始数据(startTime，recordList)
+ BinatoneHistoryData 历史分析数据
+ */
+-  (BinatoneHistoryData *)analyseOriginalData:(BinatoneOriginalData *)originalData sex:(int)sex;
 
 /**
  同步历史数据
-
+ 
  @param peripheral 蓝牙句柄
  @param startTime 报告开始时间
  @param endTime 报告结束时间
@@ -199,4 +208,7 @@ upgradePackage:(NSData *)package
  @param completion 历史数据下载完成返回
  */
 - (void)binatone:(CBPeripheral *)peripheral getHistoryData:(NSInteger)startTime endTime:(NSInteger)endTime sex:(int)sex each:(void(^)(NSInteger index, NSInteger count, BinatoneHistoryData *data, BinatoneOriginalData *originalData))eachHandle completion:(void(^)(SLPDataTransferStatus status, NSArray<BinatoneHistoryData *> *dataList, NSArray<BinatoneOriginalData *> *originalDataList))completion;
+
+
+
 @end

@@ -11,8 +11,6 @@
 @class BinatoneHistoryDataRecord;
 @interface BinatoneOriginalData : NSObject
 @property (nonatomic,assign) UInt32 startTime;
-@property (nonatomic,assign) UInt32 startPostion;
-@property (nonatomic,assign) UInt16 recordNumber;
 @property (nonatomic,strong) NSArray<BinatoneHistoryDataRecord *> *recordList;
 
 @end
