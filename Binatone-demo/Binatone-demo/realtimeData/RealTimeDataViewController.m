@@ -174,18 +174,12 @@ enum {
     
     
     //analyse original data 
-//        [SLPBLESharedManager binatone:peripheral getLast24HourOriginalData:timestamp callback:^(SLPDataTransferStatus status, id data) {
+//        [SLPBLESharedManager binatone:SharedDataManager.peripheral getLast24HourOriginalData:timestamp callback:^(SLPDataTransferStatus status, id data) {
 //
-//           BinatoneHistoryData *history= [manager analyseOriginalData:data sex:1];
-//
-//            if (status == SLPDataTransferStatus_Succeed) {
-//                [Coordinate pushToHistoryData:data type:E_HistoryDataType_24HourData sender:weakSelf animated:YES];
-//            }else{
-//                [Utils showDeviceOperationFailed:status atViewController:weakSelf];
-//            }
-//            [weakSelf unshowLoadingView];
+//           BinatoneHistoryData *history= [SLPBLESharedManager analyseOriginalData:data sex:1];
+//         [weakSelf unshowLoadingView];
 //        }];
-    
+ 
 }
 
 #pragma mark UITableViewDelegate UITableViewDataSource
