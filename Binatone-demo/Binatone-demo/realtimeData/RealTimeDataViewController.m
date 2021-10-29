@@ -37,6 +37,7 @@ enum {
 @property (nonatomic, strong) IBOutlet UIView *realtimeSectionHeader;
 @property (nonatomic, strong) IBOutlet UILabel *realtimeSectionHeaderTitleLabel;
 @property (nonatomic, strong) IBOutlet UIButton *realtimeButton;
+
 @end
 
 @implementation RealTimeDataViewController
@@ -48,7 +49,7 @@ enum {
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    [self setUI];
+                [self setUI];
     [self showRealtimeButtonOn:SharedDataManager.inRealtime];
     
     [self addNotificationObserver];
@@ -104,7 +105,7 @@ enum {
     self.realtimeData.breathRate = data.breathRate;
     self.realtimeData.heartRate = data.heartRate;
     
-    [self.tableView reloadData];
+    [self.tableView reloadData];//
 }
 
 - (IBAction)realtimeButtonClicked:(id)sender {

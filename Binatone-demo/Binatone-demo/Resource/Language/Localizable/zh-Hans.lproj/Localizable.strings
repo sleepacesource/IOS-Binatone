@@ -73,3 +73,7 @@
 "notice_leaving_bed"="出现了离床报警，请立即关注";
 "notice_apnea"="出现了呼吸暂停报警，请立即关注";
 "Daily_Report"="日报告";
+"show_connect_device" = "当前显示设备：";
+"conected_device" = "已连接设备列表";
+"show_device_title" = "切换设备";
+"show_device_message" = "是否切换显示设备？";

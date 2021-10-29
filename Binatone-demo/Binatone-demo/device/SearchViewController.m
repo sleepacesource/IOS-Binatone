@@ -91,9 +91,10 @@ enum {
     [SLPBLESharedManager binatone:info.peripheral loginWithDeviceName:info.name userId:userID time:time timezone:timezone DSTOffset:0 callback:^(SLPDataTransferStatus status, id data) {
         if (status == SLPDataTransferStatus_Succeed) {
             BinatoneDeviceInfo *deviceInfo = data;
-            SharedDataManager.deviceID = deviceInfo.deviceID;
+//            SharedDataManager.deviceID = deviceInfo.deviceID;
             SharedDataManager.deviceName = info.name;
             SharedDataManager.peripheral = info.peripheral;
+            [SharedDataManager.connectList addObject:info]; //连接设备数组数组
             [weakSelf.navigationController popViewControllerAnimated:YES];
         }else{
             [Utils showDeviceOperationFailed:status atViewController:weakSelf];

@@ -64,6 +64,7 @@
     [self showIndex:0];
 //    [self showMenuEnable:NO];
     [self addNotificationObservre];
+    [SharedDataManager toInit];
 }
 
 - (void)setUI {

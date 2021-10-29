@@ -24,6 +24,7 @@
     self.deviceName = nil;
     self.deviceID = nil;
     self.inRealtime = NO;
+    self.connectList = [[NSMutableArray alloc]initWithCapacity:0];
 }
 
 - (NSString *)userID {

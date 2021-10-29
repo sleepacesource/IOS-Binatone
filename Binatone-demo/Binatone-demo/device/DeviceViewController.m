@@ -10,13 +10,35 @@
 #import "SearchViewController.h"
 #import <Binatone/Binatone.h>
 #import "DatePickerPopUpView.h"
+#import "ImageTableViewCell.h"
 
-@interface DeviceViewController ()
+enum {
+    Section_Title = 0,
+    Section_Device,
+    Section_Bottom
+};
+
+enum {
+    SectionTitleRow_title = 0,
+    SectionTitleRow_Btn,
+    
+    SectionTitleRow_Bottom
+};
+
+@interface DeviceViewController ()<UITableViewDelegate, UITableViewDataSource,UIAlertViewDelegate,UITextFieldDelegate>
+{
+    int indexRow;
+    int disconnectIndexRow;
+}
 @property (nonatomic, weak) IBOutlet UIView *contentView;
 @property (nonatomic, weak) IBOutlet UIButton *connectBtn;
 @property (nonatomic, weak) IBOutlet UIView *userIDShell;
 @property (nonatomic, weak) IBOutlet UILabel *userIDTitleLabel;
 @property (nonatomic, weak) IBOutlet UITextField *userIDLabel;
+
+@property (nonatomic, weak) IBOutlet UILabel *showConnectLabel;
+@property (nonatomic, weak) IBOutlet UITableView *connectTableview;
+
 //deviceInfo
 @property (nonatomic, weak) IBOutlet UIView *deviceInfoShell;
 @property (nonatomic, weak) IBOutlet UILabel *deviceInfoSectionLabel;
@@ -52,6 +74,7 @@
 @property (nonatomic, strong) BinatoneAlarm *alarmInfo;
 @property (nonatomic, strong) BinatoneAlarm *leftBedAlarmInfo;
 @property (nonatomic, assign) BOOL connected;
+
 @end
 
 @implementation DeviceViewController
@@ -76,8 +99,8 @@
     [self addNotificationObservre];
     [self showConnected:NO];
     
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
-    [self.contentView addGestureRecognizer:tap];
+    //    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+    //    [self.contentView addGestureRecognizer:tap];
 }
 
 - (void)setUI {
@@ -95,6 +118,7 @@
     [Utils configNormalDetailLabel:self.firmwareVersionLabel];
     [Utils configNormalDetailLabel:self.macLabel];
     
+    [Utils configSectionTitle:self.showConnectLabel];
     [Utils configSectionTitle:self.userIDTitleLabel];
     [Utils configSectionTitle:self.deviceInfoSectionLabel];
     [Utils configSectionTitle:self.firmwareInfoSectionLabel];
@@ -107,11 +131,12 @@
     [Utils setButton:self.getMacBtn title:LocalizedString(@"obtain_mac_address")];
     [Utils setButton:self.upgradeBtn title:LocalizedString(@"fireware_update")];
     
+    [self.showConnectLabel setText:LocalizedString(@"show_connect_device")];
     [self.leftBedAlarmTitleLabel setText:LocalizedString(@"leaving_bed_alert")];
     [self.alarmTitleLabel setText:LocalizedString(@"apnea_alert")];
     [self.alarmTimeLabel setText:LocalizedString(@"set_alert_switch")];
     [self.alarmTimeIcon setImage:[UIImage imageNamed:@"common_list_icon_leftarrow.png"]];
-
+    
     [self.userIDTitleLabel setText:LocalizedString(@"userid_sync_sleep")];
     [self.deviceInfoSectionLabel setText:LocalizedString(@"device_infos")];
     [self.firmwareInfoSectionLabel setText:LocalizedString(@"firmware_info")];
@@ -137,7 +162,7 @@
     [self.userIDLabel.layer setBorderColor:Theme.normalLineColor.CGColor];
     [self.userIDLabel setText:[DataManager sharedDataManager].userID];
     [self.userIDLabel setPlaceholder:LocalizedString(@"enter_userid")];
-    
+    self.connectTableview.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self reloadAlarmInfo];
 }
 
@@ -161,22 +186,41 @@
         [self.batteryLabel setText:@""];
         [self.firmwareVersionLabel setText:@""];
         [self.macLabel setText:@""];
-        [Utils setButton:self.connectBtn title:LocalizedString(@"connect_device")];
     }else{
-        [Utils setButton:self.connectBtn title:LocalizedString(@"disconnect")];
+        
     }
+    [Utils setButton:self.connectBtn title:LocalizedString(@"connect_device")];
     [self.settingShell setUserInteractionEnabled:connected];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-//    [self.deviceIDLabel setText:SharedDataManager.deviceID];
-//    [self.deviceNameLabel setText:SharedDataManager.deviceName];
+    //    [self.deviceIDLabel setText:SharedDataManager.deviceID];
+    //    [self.deviceNameLabel setText:SharedDataManager.deviceName];
+    indexRow = -1;
     [self showConnected:SharedDataManager.connected];
     
     [self updateAlarmInfo];
     if (SharedDataManager.connected) {
         [self leftBedAlarmEnableValueChanged:self.leftBedAlarmEnableSwitch];
+    }
+    if (SharedDataManager.connectList.count) {
+        [self.connectTableview reloadData];
+        [self showDevice];
+    }
+}
+
+- (void)showDevice{
+    self.showConnectLabel.text = [NSString stringWithFormat:@"%@%@",LocalizedString(@"show_connect_device"),SharedDataManager.deviceName?SharedDataManager.deviceName:@""];
+}
+
+
+- (void)selectIndexDevice:(int)index{
+    if (SharedDataManager.connectList.count>index) {
+        SLPPeripheralInfo *info = [SharedDataManager.connectList objectAtIndex:index];
+        SharedDataManager.deviceName = info.name;
+        SharedDataManager.peripheral = info.peripheral;
+        [self showDevice];
     }
 }
 
@@ -195,12 +239,30 @@
 - (void)deviceConnected:(NSNotification *)notification {
     self.connected = YES;
     [self showConnected:YES];
-//    [self getAlarmInfo:notification.object];
+    //    [self getAlarmInfo:notification.object];
 }
 
 - (void)deviceDisconnected:(NSNotification *)notfication {
-    self.connected = NO;
-    [self showConnected:NO];
+    if (SharedDataManager.connectList.count>0) {
+        SLPPeripheralInfo *info = [SharedDataManager.connectList objectAtIndex:disconnectIndexRow];
+        [SharedDataManager.connectList removeObjectAtIndex:disconnectIndexRow];
+        [self.connectTableview reloadData];
+        if([SharedDataManager.deviceName isEqualToString:info.name]) {
+            if (SharedDataManager.connectList.count>0) {
+                SLPPeripheralInfo *newinfo = [SharedDataManager.connectList objectAtIndex:0];
+                SharedDataManager.deviceName = newinfo.name;
+                SharedDataManager.peripheral = newinfo.peripheral;
+                [self showDevice];
+            }
+            else{
+                self.connected = NO;
+                [self showConnected:NO];
+                [SharedDataManager toInit];
+                [self showDevice];
+            }
+        }
+        disconnectIndexRow = 0;
+    }
 }
 
 - (void)reloadAlarmInfo {
@@ -238,8 +300,10 @@
 }
 
 - (IBAction)connectDeviceClicked:(id)sender {
-    if (self.connected) {
-        [SLPBLESharedManager disconnectPeripheral:SharedDataManager.peripheral timeout:0 completion:nil];
+    [self.userIDLabel resignFirstResponder];
+    if (SharedDataManager.connectList.count == 5) {
+        return;
+        //        [SLPBLESharedManager disconnectPeripheral:SharedDataManager.peripheral timeout:0 completion:nil];
     }else{
         //836408
         //832802
@@ -402,6 +466,99 @@
 
 - (IBAction)alarmTimeEdit:(id)sender {
     [Coordinate pushToAlarmTime:self.alarmInfo sender:self aniamted:YES];
+}
+
+
+#pragma mark UITableViewDelegate UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return Section_Bottom;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSInteger row = 1;
+    if (section == Section_Device) {
+        row = SharedDataManager.connectList.count;
+    }
+    return row;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *identifier = @"ImageTableViewCell";
+    ImageTableViewCell *cell = (ImageTableViewCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
+    if (!cell) {
+        [tableView registerNib:[UINib nibWithNibName:@"ImageTableViewCell" bundle:nil] forCellReuseIdentifier:identifier];
+        cell = (ImageTableViewCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
+    }
+    
+    NSInteger row = indexPath.row;
+    
+    NSString *title = @"";
+    switch (indexPath.section) {
+        case Section_Title:
+            switch (row) {
+                case Section_Title:
+                    title = LocalizedString(@"conected_device");
+                    cell.cellImageView.hidden = YES;
+                    break;
+                default:
+                    break;
+            }
+            break;
+        case Section_Device:
+        {
+            SLPPeripheralInfo *info = [SharedDataManager.connectList objectAtIndex:row];
+            title = info.name;
+            cell.cellClickBlock = ^(BOOL click){
+                [self disconnectDevice:(int)indexPath.row];
+            };
+        }
+            break;
+        default:
+            break;
+    }
+    [Utils configCellTitleLabel:cell.titleLabel];
+    [cell.titleLabel setText:title];
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 40.0;
+}
+
+- (BOOL) tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    BOOL ret = YES;
+    if (indexPath.section == Section_Title && indexPath.row == SectionTitleRow_title) {
+        ret = NO;
+    }
+    return ret;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == Section_Device) {
+        if (indexRow == (int)indexPath.row) {
+            return;
+        }
+        indexRow = (int)indexPath.row;
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:LocalizedString(@"show_device_title") message:LocalizedString(@"show_device_message") delegate:self cancelButtonTitle:LocalizedString(@"cancel") otherButtonTitles:LocalizedString(@"confirm"), nil];
+        [alert show];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [self selectIndexDevice:indexRow];
+    }
+}
+
+
+- (void)disconnectDevice:(int)index{
+    if (SharedDataManager.connectList.count>index) {
+        disconnectIndexRow = index;
+        SLPPeripheralInfo *info = [SharedDataManager.connectList objectAtIndex:index];
+        [SLPBLESharedManager disconnectPeripheral:info.peripheral timeout:0 completion:^(SLPBLEDisconnectReturnCodes code, NSInteger disconnectHandleID) {
+        }];
+    }
 }
 
 @end

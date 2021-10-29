@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Binatone/Binatone.h>
 
 #define SharedDataManager [DataManager sharedDataManager]
 @class CBPeripheral;
@@ -17,6 +18,7 @@
 @property (nonatomic, assign) BOOL inRealtime;
 @property (nonatomic, assign) BOOL connected;
 @property (nonatomic, strong) NSString *userID;
+@property(nonatomic, strong)NSMutableArray<SLPPeripheralInfo *> *connectList;
 
 + (DataManager *)sharedDataManager;
 
