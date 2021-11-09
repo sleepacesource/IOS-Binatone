@@ -10,7 +10,7 @@
 		265F16D9272AA8B5009AB9A2 /* ImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 265F16D7272AA8B5009AB9A2 /* ImageTableViewCell.m */; };
 		265F16DA272AA8B5009AB9A2 /* ImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 265F16D8272AA8B5009AB9A2 /* ImageTableViewCell.xib */; };
 		265F16DD272AAEC3009AB9A2 /* ic_shanchu.png in Resources */ = {isa = PBXBuildFile; fileRef = 265F16DC272AAEC2009AB9A2 /* ic_shanchu.png */; };
-		26CA071B273A0767004649F9 /* MBP89SN-v1.46b(v2.0.02b)-ug-20211108.des in Resources */ = {isa = PBXBuildFile; fileRef = 26CA071A273A0767004649F9 /* MBP89SN-v1.46b(v2.0.02b)-ug-20211108.des */; };
+		267FD2CF273A5654003B8233 /* MBP89SN-v1.47b(v2.0.02b)-ug-20211109.des in Resources */ = {isa = PBXBuildFile; fileRef = 267FD2CE273A5654003B8233 /* MBP89SN-v1.47b(v2.0.02b)-ug-20211109.des */; };
 		5B2A9AA3212E4E8A0015C210 /* DeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2A9AA1212E4E8A0015C210 /* DeviceViewController.m */; };
 		5B2A9AA4212E4E8A0015C210 /* DeviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B2A9AA2212E4E8A0015C210 /* DeviceViewController.xib */; };
 		5B2A9AA8212E4E9F0015C210 /* RealTimeDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2A9AA6212E4E9F0015C210 /* RealTimeDataViewController.m */; };
@@ -73,7 +73,7 @@
 		265F16D7272AA8B5009AB9A2 /* ImageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageTableViewCell.m; sourceTree = "<group>"; };
 		265F16D8272AA8B5009AB9A2 /* ImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageTableViewCell.xib; sourceTree = "<group>"; };
 		265F16DC272AAEC2009AB9A2 /* ic_shanchu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_shanchu.png; sourceTree = "<group>"; };
-		26CA071A273A0767004649F9 /* MBP89SN-v1.46b(v2.0.02b)-ug-20211108.des */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MBP89SN-v1.46b(v2.0.02b)-ug-20211108.des"; sourceTree = "<group>"; };
+		267FD2CE273A5654003B8233 /* MBP89SN-v1.47b(v2.0.02b)-ug-20211109.des */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MBP89SN-v1.47b(v2.0.02b)-ug-20211109.des"; sourceTree = "<group>"; };
 		5B2A9AA0212E4E8A0015C210 /* DeviceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceViewController.h; sourceTree = "<group>"; };
 		5B2A9AA1212E4E8A0015C210 /* DeviceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceViewController.m; sourceTree = "<group>"; };
 		5B2A9AA2212E4E8A0015C210 /* DeviceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceViewController.xib; sourceTree = "<group>"; };
@@ -385,7 +385,7 @@
 		5BA5DD74212CFB240046EFEC /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				26CA071A273A0767004649F9 /* MBP89SN-v1.46b(v2.0.02b)-ug-20211108.des */,
+				267FD2CE273A5654003B8233 /* MBP89SN-v1.47b(v2.0.02b)-ug-20211109.des */,
 				A4274C72241F0E16003D4EA9 /* MBP89SN_20200313_1.44(V1.1.4)_Release.des */,
 				5BA5DD76212CFB7D0046EFEC /* Language */,
 				5BA5DD75212CFB5C0046EFEC /* Image */,
@@ -497,9 +497,9 @@
 				5BC9589421339FB800827E36 /* common_list_icon_leftarrow@3x.png in Resources */,
 				5BC9589221339FB800827E36 /* common_nav_btn_back_white_nor@2x.png in Resources */,
 				5B3815AA2134EC8B00CC48B8 /* device_btn_refresh_nor@2x.png in Resources */,
+				267FD2CF273A5654003B8233 /* MBP89SN-v1.47b(v2.0.02b)-ug-20211109.des in Resources */,
 				5B2A9AAE212E4EB10015C210 /* HistoryDataViewController.xib in Resources */,
 				5B2A9AA9212E4E9F0015C210 /* RealTimeDataViewController.xib in Resources */,
-				26CA071B273A0767004649F9 /* MBP89SN-v1.46b(v2.0.02b)-ug-20211108.des in Resources */,
 				5BC9589021339FB800827E36 /* common_list_icon_leftarrow@2x.png in Resources */,
 				5BBCDB072135500900E498E2 /* DatePickerPopUpView.xib in Resources */,
 				5B2A9AD1212E89780015C210 /* MainViewController.xib in Resources */,
