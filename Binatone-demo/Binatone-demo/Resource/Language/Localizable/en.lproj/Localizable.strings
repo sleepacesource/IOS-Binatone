@@ -77,3 +77,4 @@
 "conected_device" = "Connected list";
 "show_device_title" = "Switching device";
 "show_device_message" = "Switch display devices?";
+"hint_analyze_fail"="Unable To Analyze Sleep Lasting Less Than 10 Minutes";

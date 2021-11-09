@@ -77,3 +77,4 @@
 "conected_device" = "已连接设备列表";
 "show_device_title" = "切换设备";
 "show_device_message" = "是否切换显示设备？";
+"hint_analyze_fail"="无法分析小于10分钟的睡眠数据";

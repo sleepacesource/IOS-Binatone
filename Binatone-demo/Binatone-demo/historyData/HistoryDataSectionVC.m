@@ -102,6 +102,11 @@ enum {
         }else if (status != SLPDataTransferStatus_Succeed) {
             [Utils showAlertTitle:nil message:LocalizedString(@"sync_falied") confirmTitle:LocalizedString(@"confirm") atViewController:weakSelf];
         }
+        else{
+            UIAlertView *alertview=[[UIAlertView alloc]initWithTitle:nil message:NSLocalizedString(@"hint_analyze_fail", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"confirm", nil) otherButtonTitles:nil];
+            [alertview show];
+            return;
+        }
     }];
     
 //    [SLPBLESharedManager binatone:SharedDataManager.peripheral getHistoryData:startTime endTime:timestamp sex:0 each:^(NSInteger index, NSInteger count, BinatoneHistoryData *data) {

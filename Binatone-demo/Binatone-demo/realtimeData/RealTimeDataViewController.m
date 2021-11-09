@@ -265,13 +265,13 @@ enum {
                 break;
             case RealtimeDataRow_HeartRate:
                 title = LocalizedString(@"real_heart");
-                if (status == RealtimeDataStaus_InBed) {
+                if (status == RealtimeDataStaus_InBed||status == RealtimeDataStaus_B_STOP ||status == RealtimeDataStaus_H_STOP ||status == RealtimeDataStaus_BODYMOVE||status ==RealtimeDataStaus_TURN_OVER) {
                     detail = [NSString stringWithFormat:@"%@%@",self.realtimeData.heartRate, LocalizedString(@"beats_min")];
                 }
                 break;
             case RealtimeDataRow_BreathRate:
                 title = LocalizedString(@"real_breath");
-                if (status == RealtimeDataStaus_InBed) {
+                if (status == RealtimeDataStaus_InBed||status == RealtimeDataStaus_B_STOP ||status == RealtimeDataStaus_H_STOP ||status == RealtimeDataStaus_BODYMOVE||status ==RealtimeDataStaus_TURN_OVER) {
                     detail = [NSString stringWithFormat:@"%@%@",self.realtimeData.breathRate, LocalizedString(@"times_min")];
                 }
                 break;
