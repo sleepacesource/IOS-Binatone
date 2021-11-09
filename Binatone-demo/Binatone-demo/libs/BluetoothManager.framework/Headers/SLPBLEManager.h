@@ -39,6 +39,8 @@
 - (SLPDeviceTypes)deviceTypeOfPeripheral:(CBPeripheral *)peripheral;
 - (NSString *)deviceNameOfPeripheral:(CBPeripheral *)peripheral;
 - (NSInteger)deviceTextureOfPeripheral:(CBPeripheral *)peripheral;
+- (NSString *)deviceVersionOfPeripheral:(CBPeripheral *)peripheral;
+
 
 //通过设备名称查询蓝牙句柄 不建议使用
 - (CBPeripheral *)_peripheralOfDeviceName:(NSString *)deviceName;
@@ -46,6 +48,10 @@
          withDeviceName:(NSString *)deviceName
              deviceType:(int)deviceType protocolType:(int)protocolType
                 withWriteWithResponse:(BOOL)writeWithResponse;
+//不建议使用，填充设备版本信息（内部使用）
+- (void)_fillVersionPeripheral:(CBPeripheral *)peripheral
+          deviceVersion:(NSString *)deviceVersion;
+- (BOOL)peripheralIsNewVersion:(CBPeripheral *)peripheral;
 
 - (void)timeDelay;
 

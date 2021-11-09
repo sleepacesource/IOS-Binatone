@@ -415,11 +415,11 @@ enum {
 
 - (IBAction)upgradeClicked:(id)sender {
     KFLog_Normal(YES, @"upgrade");
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"MBP89SN_20200313_1.44(V1.1.4)_Release" ofType:@"des"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"MBP89SN-v1.46b(v2.0.02b)-ug-20211108" ofType:@"des"];
     NSData *data = [NSData dataWithContentsOfFile:path];
     __weak typeof(self) weakSelf = self;
     SLPLoadingBlockView *loadingView = [self showLoadingView];
-    [SLPBLESharedManager binatone:SharedDataManager.peripheral upgradeDeviceWithCrcDes:(long)1175134153 crcBin:(long)3870272108 upgradePackage:data callback:^(SLPDataTransferStatus status, id data) {
+    [SLPBLESharedManager binatone:SharedDataManager.peripheral upgradeDeviceWithCrcDes:(long)3560616242 crcBin:(long)4258566199 upgradePackage:data callback:^(SLPDataTransferStatus status, id data) {
         if (status != SLPDataTransferStatus_Succeed){
             [weakSelf unshowLoadingView];
             [Utils showAlertTitle:nil message:LocalizedString(@"up_failed") confirmTitle:LocalizedString(@"confirm") atViewController:weakSelf];

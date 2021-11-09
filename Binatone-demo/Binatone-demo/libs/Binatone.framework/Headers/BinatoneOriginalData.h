@@ -13,6 +13,7 @@
 @property (nonatomic,assign) UInt32 startTime;
 @property (nonatomic,strong) NSArray<BinatoneHistoryDataRecord *> *recordList;
 
+
 @end
 
 @interface BinatoneHistoryDataRecord : NSObject

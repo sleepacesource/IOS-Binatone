@@ -164,21 +164,21 @@ enum {
     __weak typeof(self) weakSelf = self;
     [self showLoadingView];
     KFLog_Normal(YES, @"get 24 hour data");
-//        [SLPBLESharedManager binatone:SharedDataManager.peripheral getLast24HourData:timestamp sex:1 callback:^(SLPDataTransferStatus status, id data) {
-//            if (status == SLPDataTransferStatus_Succeed) {
-//                [Coordinate pushToHistoryData:data type:E_HistoryDataType_24HourData sender:weakSelf animated:YES];
-//            }else{
-//                [Utils showDeviceOperationFailed:status atViewController:weakSelf];
-//            }
-//            [weakSelf unshowLoadingView];
-//        }];
+        [SLPBLESharedManager binatone:SharedDataManager.peripheral getLast24HourData:timestamp sex:1 callback:^(SLPDataTransferStatus status, id data) {
+            if (status == SLPDataTransferStatus_Succeed) {
+                [Coordinate pushToHistoryData:data type:E_HistoryDataType_24HourData sender:weakSelf animated:YES];
+            }else{
+                [Utils showDeviceOperationFailed:status atViewController:weakSelf];
+            }
+            [weakSelf unshowLoadingView];
+        }];
     
     
     //analyse original data
-    [SLPBLESharedManager binatone:SharedDataManager.peripheral getLast24HourOriginalData:timestamp callback:^(SLPDataTransferStatus status, id data) {
-        BinatoneHistoryData *history= [SLPBLESharedManager analyseOriginalData:data sex:1];
-        [weakSelf unshowLoadingView];
-    }];
+//    [SLPBLESharedManager binatone:SharedDataManager.peripheral getLast24HourOriginalData:timestamp callback:^(SLPDataTransferStatus status, id data) {
+//        BinatoneHistoryData *history= [SLPBLESharedManager analyseOriginalData:data sex:1 newVersion:NO];
+//        [weakSelf unshowLoadingView];
+//    }];
     
 }
 

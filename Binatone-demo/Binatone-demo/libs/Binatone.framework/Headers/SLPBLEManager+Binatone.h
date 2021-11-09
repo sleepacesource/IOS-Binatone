@@ -18,6 +18,7 @@
 #import "BinatoneMAC.h"
 #import "BinatoneOriginalData.h"
 
+
 @interface SLPBLEManager (Binatone)
 
 
@@ -188,10 +189,11 @@
  通过原始数据得到分析结果数据
  @param originalData 传入原始数据对象
  @param sex 性别 (0:女 1：男)
+ @param flag 是否用新算法分析数据（Yes是，NO否），固件版本大于01.01.44用新算法判断，自己确定
  BinatoneOriginalData 原始数据(startTime，recordList)
  BinatoneHistoryData 历史分析数据
- */
--  (BinatoneHistoryData *)analyseOriginalData:(BinatoneOriginalData *)originalData sex:(int)sex;
+ */;
+-  (BinatoneHistoryData *)analyseOriginalData:(BinatoneOriginalData *)originalData sex:(int)sex newVersion:(BOOL) flag;
 
 /**
  同步历史数据
