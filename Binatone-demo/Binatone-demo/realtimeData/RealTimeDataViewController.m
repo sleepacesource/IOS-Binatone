@@ -100,7 +100,7 @@ enum {
     }else if (data.isOffBed) {
         self.realtimeData.status = RealtimeDataStaus_OffBed;
     }else{
-        self.realtimeData.status = RealtimeDataStaus_InBed;
+        self.realtimeData.status = data.status;
     }
     self.realtimeData.breathRate = data.breathRate;
     self.realtimeData.heartRate = data.heartRate;
@@ -253,6 +253,18 @@ enum {
                     switch (status) {
                         case RealtimeDataStaus_InBed:
                             detail = LocalizedString(@"in_bed");
+                            break;
+                        case RealtimeDataStaus_B_STOP:
+                            detail = LocalizedString(@"breath_stop");
+                            break;
+                        case RealtimeDataStaus_H_STOP:
+                            detail = LocalizedString(@"heart_stop");
+                            break;
+                        case RealtimeDataStaus_BODYMOVE:
+                            detail = LocalizedString(@"body_move");
+                            break;
+                        case RealtimeDataStaus_TURN_OVER:
+                            detail = LocalizedString(@"turn_over");
                             break;
                         case RealtimeDataStaus_OffBed:
                             detail = LocalizedString(@"left_bed");

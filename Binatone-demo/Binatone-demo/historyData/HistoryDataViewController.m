@@ -90,15 +90,64 @@ enum{
 
 #pragma mark UITableViewDelegate UITableViewDataSource
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 220.0;
+    if (section == 0) {
+        return 220.0;
+    }
+    else{
+        return 50;
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return self.historyView;
+    if (section == 0) {
+        return self.historyView;
+    }
+    else{
+        UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
+         UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(10, 0, 100, 50)];
+         label.textColor=[UIColor blackColor];
+         if(section==1)
+         {
+             label.text= LocalizedString(@"Left bed");
+         }else if(section==2)
+         {
+             label.text=LocalizedString(@"breath_stop");
+         }
+         [view addSubview:label];
+         return  view;
+    }
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    if (self.type == E_HistoryDataType_History) {
+        return  3;
+    }
+    else
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return Row_Bottom;
+    
+    switch (section) {
+        case 0:
+        {
+            return Row_Bottom;
+        }
+            break;
+        case 1:
+        {
+            return self.historyData.analysis.leftBedArray.count;
+        }
+            break;
+        case 2:
+        {
+            return self.historyData.analysis.apneaArray.count;
+        }
+            break;
+        default:
+            return 0;
+            break;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -112,8 +161,31 @@ enum{
     [cell.detailTextLabel setTextColor:Theme.C3];
     [cell.detailTextLabel setNumberOfLines:2];
     [cell.detailTextLabel setFont:Theme.T3];
-    [cell.textLabel setText:[self rowTitleAtRow:indexPath.row]];
-    [cell.detailTextLabel setText:[self detailAtRow:indexPath.row]];
+    switch (indexPath.section) {
+        case 0:
+        {
+            [cell.textLabel setText:[self rowTitleAtRow:indexPath.row]];
+            [cell.detailTextLabel setText:[self detailAtRow:indexPath.row]];
+        }
+            break;
+        case 1:
+        {
+            NSArray *item = self.historyData.analysis.leftBedArray[indexPath.row];
+            cell.textLabel.text = [NSString stringWithFormat:@"%@",[self timestampToDate:[item[0] integerValue]]];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%lds",LocalizedString(@"duration"),[item[1] integerValue]];
+        }
+            break;
+        case 2:
+        {
+            NSArray *item = self.historyData.analysis.apneaArray[indexPath.row];
+            cell.textLabel.text = [NSString stringWithFormat:@"%@",[self timestampToDate:[item[0] integerValue]]];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%lds",LocalizedString(@"duration"),[item[1] integerValue]];
+        }
+            break;
+            
+        default:
+            break;
+    }
     
     BOOL upLineHidden = YES;
     if (indexPath.row == 0) {
@@ -209,6 +281,14 @@ enum{
             break;
     }
     return title;
+}
+
+- (NSString *)timestampToDate:(NSInteger)time{
+    NSDate * myDate=[NSDate dateWithTimeIntervalSince1970:time];
+    NSDateFormatter *formate = [[NSDateFormatter alloc]init];
+    [formate setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+    NSString *timeStr=[formate stringFromDate:myDate];
+    return timeStr;
 }
 
 @end

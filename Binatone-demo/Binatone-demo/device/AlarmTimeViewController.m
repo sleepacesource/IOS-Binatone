@@ -139,6 +139,9 @@ enum {
             weakSelf.alarmData.minute = weakSelf.beginTime.minute;
             weakSelf.alarmData.length = len;
             [weakSelf.navigationController popViewControllerAnimated:YES];
+            
+            NSString *setTime = [NSString stringWithFormat:@"%02d:%02d-%02d:%02d",weakSelf.beginTime.hour,weakSelf.beginTime.minute,weakSelf.endTime.hour,weakSelf.endTime.minute];
+            [[NSUserDefaults standardUserDefaults] setObject:setTime forKey:@"TimeString"];
         }
     }];
 }

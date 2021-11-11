@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,6 +15,7 @@
                 <outlet property="alarmTimeDownLine" destination="MbK-mN-vFr" id="GmF-Dp-ncv"/>
                 <outlet property="alarmTimeIcon" destination="VMP-h4-J6R" id="tXf-HU-Gt4"/>
                 <outlet property="alarmTimeLabel" destination="Hng-eu-N7t" id="aIC-9e-9mJ"/>
+                <outlet property="alarmTimeLabelValue" destination="ai4-D0-Prh" id="Ngp-PK-1xY"/>
                 <outlet property="alarmTitleLabel" destination="2Ac-75-pZO" id="lom-40-neE"/>
                 <outlet property="alarmUpLine" destination="L5d-wl-IyF" id="kmU-Uf-uzp"/>
                 <outlet property="batteryLabel" destination="Mjd-8R-b1W" id="6vD-8h-V3l"/>
@@ -464,7 +465,7 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hng-eu-N7t">
-                                                    <rect key="frame" x="0.0" y="0.0" width="323" height="49"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="183" height="49"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -476,19 +477,32 @@
                                                         <constraint firstAttribute="height" constant="12" id="bvW-Qf-n7n"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ai4-D0-Prh">
+                                                    <rect key="frame" x="183" y="0.0" width="155" height="49"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="155" id="B8a-vY-T29"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="Hng-eu-N7t" firstAttribute="leading" secondItem="TD3-K0-oGG" secondAttribute="leading" id="1EM-4c-FUf"/>
+                                                <constraint firstItem="Hng-eu-N7t" firstAttribute="top" secondItem="vUi-P6-Gbu" secondAttribute="top" id="3C4-p4-ZEw"/>
                                                 <constraint firstAttribute="bottom" secondItem="MbK-mN-vFr" secondAttribute="bottom" id="9km-UY-1F0"/>
+                                                <constraint firstItem="Hng-eu-N7t" firstAttribute="leading" secondItem="vUi-P6-Gbu" secondAttribute="leading" id="CRy-XE-jQE"/>
                                                 <constraint firstItem="MbK-mN-vFr" firstAttribute="leading" secondItem="vUi-P6-Gbu" secondAttribute="leading" id="Egm-zM-SNE"/>
-                                                <constraint firstItem="Hng-eu-N7t" firstAttribute="top" secondItem="TD3-K0-oGG" secondAttribute="top" id="Gce-jT-z1U"/>
                                                 <constraint firstItem="TD3-K0-oGG" firstAttribute="top" secondItem="vUi-P6-Gbu" secondAttribute="top" id="SF4-My-EMJ"/>
                                                 <constraint firstAttribute="height" constant="50" id="TE3-Hg-V7a"/>
+                                                <constraint firstItem="MbK-mN-vFr" firstAttribute="top" secondItem="Hng-eu-N7t" secondAttribute="bottom" id="VWm-BN-XtG"/>
+                                                <constraint firstItem="MbK-mN-vFr" firstAttribute="top" secondItem="ai4-D0-Prh" secondAttribute="bottom" id="VdC-P9-KET"/>
                                                 <constraint firstItem="MbK-mN-vFr" firstAttribute="top" secondItem="TD3-K0-oGG" secondAttribute="bottom" id="VpM-pz-ohb"/>
+                                                <constraint firstItem="ai4-D0-Prh" firstAttribute="top" secondItem="vUi-P6-Gbu" secondAttribute="top" id="W36-dy-Npw"/>
                                                 <constraint firstItem="VMP-h4-J6R" firstAttribute="centerY" secondItem="vUi-P6-Gbu" secondAttribute="centerY" id="Yy5-Yc-SuI"/>
-                                                <constraint firstItem="Hng-eu-N7t" firstAttribute="trailing" secondItem="TD3-K0-oGG" secondAttribute="trailing" id="cIE-ys-r4u"/>
-                                                <constraint firstItem="Hng-eu-N7t" firstAttribute="bottom" secondItem="TD3-K0-oGG" secondAttribute="bottom" id="jej-iG-NCZ"/>
+                                                <constraint firstItem="VMP-h4-J6R" firstAttribute="leading" secondItem="ai4-D0-Prh" secondAttribute="trailing" id="ai2-T3-Xg8"/>
+                                                <constraint firstItem="ai4-D0-Prh" firstAttribute="leading" secondItem="Hng-eu-N7t" secondAttribute="trailing" id="d2G-wi-2A9"/>
+                                                <constraint firstItem="ai4-D0-Prh" firstAttribute="leading" secondItem="Hng-eu-N7t" secondAttribute="trailing" id="eB6-ZR-18W"/>
                                                 <constraint firstAttribute="trailing" secondItem="VMP-h4-J6R" secondAttribute="trailing" id="jwF-hA-BOk"/>
                                                 <constraint firstItem="TD3-K0-oGG" firstAttribute="leading" secondItem="vUi-P6-Gbu" secondAttribute="leading" id="nyn-4R-k4w"/>
                                                 <constraint firstItem="VMP-h4-J6R" firstAttribute="leading" secondItem="TD3-K0-oGG" secondAttribute="trailing" constant="15" id="qP3-dA-Zg4"/>

@@ -78,3 +78,9 @@
 "show_device_title" = "Switching device";
 "show_device_message" = "Switch display devices?";
 "hint_analyze_fail"="Unable To Analyze Sleep Lasting Less Than 10 Minutes";
+"turn_over" = "Turn over";
+"body_move" = "Body move";
+"heart_stop" = "Abnormal Heart Rate";
+"breath_stop" = "apnea";
+"Left bed"="Left Bed";
+"duration"="Duration";

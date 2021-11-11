@@ -70,6 +70,7 @@ enum {
 @property (nonatomic, weak) IBOutlet UILabel *alarmTimeLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *alarmTimeIcon;
 @property (nonatomic, weak) IBOutlet UIView *alarmTimeDownLine;
+@property (nonatomic, weak) IBOutlet UILabel *alarmTimeLabelValue;
 
 @property (nonatomic, strong) BinatoneAlarm *alarmInfo;
 @property (nonatomic, strong) BinatoneAlarm *leftBedAlarmInfo;
@@ -134,8 +135,8 @@ enum {
     [self.showConnectLabel setText:LocalizedString(@"show_connect_device")];
     [self.leftBedAlarmTitleLabel setText:LocalizedString(@"leaving_bed_alert")];
     [self.alarmTitleLabel setText:LocalizedString(@"apnea_alert")];
-    [self.alarmTimeLabel setText:LocalizedString(@"set_alert_switch")];
     [self.alarmTimeIcon setImage:[UIImage imageNamed:@"common_list_icon_leftarrow.png"]];
+    [self.alarmTimeLabel setText:LocalizedString(@"set_alert_switch")];
     
     [self.userIDTitleLabel setText:LocalizedString(@"userid_sync_sleep")];
     [self.deviceInfoSectionLabel setText:LocalizedString(@"device_infos")];
@@ -151,6 +152,7 @@ enum {
     [Utils configCellTitleLabel:self.leftBedAlarmTitleLabel];
     [Utils configCellTitleLabel:self.alarmTitleLabel];
     [Utils configCellTitleLabel:self.alarmTimeLabel];
+    [Utils configCellTitleLabel:self.alarmTimeLabelValue];
     
     self.userIDLabel.keyboardType = UIKeyboardTypeNumberPad;
     [self.userIDLabel setTextColor:Theme.C3];
@@ -164,6 +166,14 @@ enum {
     [self.userIDLabel setPlaceholder:LocalizedString(@"enter_userid")];
     self.connectTableview.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self reloadAlarmInfo];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSString *time = [[NSUserDefaults standardUserDefaults]objectForKey:@"TimeString"];
+    if (time&&time.length>0) {
+        self.alarmTimeLabelValue.text = time;
+    }
 }
 
 - (void)tap:(UIGestureRecognizer *)gesture {
@@ -415,11 +425,11 @@ enum {
 
 - (IBAction)upgradeClicked:(id)sender {
     KFLog_Normal(YES, @"upgrade");
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"MBP89SN-v1.47b(v2.0.02b)-ug-20211109" ofType:@"des"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"MBP89SN-v1.48b(v2.0.02b)-ug-20211110" ofType:@"des"];
     NSData *data = [NSData dataWithContentsOfFile:path];
     __weak typeof(self) weakSelf = self;
     SLPLoadingBlockView *loadingView = [self showLoadingView];
-    [SLPBLESharedManager binatone:SharedDataManager.peripheral upgradeDeviceWithCrcDes:(long)2312596107 crcBin:(long)2499187137 upgradePackage:data callback:^(SLPDataTransferStatus status, id data) {
+    [SLPBLESharedManager binatone:SharedDataManager.peripheral upgradeDeviceWithCrcDes:(long)346797855 crcBin:(long)1140616810 upgradePackage:data callback:^(SLPDataTransferStatus status, id data) {
         if (status != SLPDataTransferStatus_Succeed){
             [weakSelf unshowLoadingView];
             [Utils showAlertTitle:nil message:LocalizedString(@"up_failed") confirmTitle:LocalizedString(@"confirm") atViewController:weakSelf];
