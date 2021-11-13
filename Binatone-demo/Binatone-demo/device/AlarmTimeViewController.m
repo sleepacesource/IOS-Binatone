@@ -107,6 +107,12 @@ enum {
     [datePicker.titleLabel setText:title];
     datePicker.datePicker.date = date;
     datePicker.datePicker.datePickerMode = UIDatePickerModeTime;
+    
+    if (@available(iOS 13.4, *)) {
+        datePicker.datePicker.preferredDatePickerStyle = UIDatePickerStyleWheels;
+    } else {
+        // Fallback on earlier versions
+    }
     __weak typeof(self) wekSelf = self;
     [datePicker showInViewController:self animated:YES confirmCallback:^(NSDate *date) {
         NSDateComponents *cmps = [currentCalender components:NSCalendarUnitHour|NSCalendarUnitMinute fromDate:date];

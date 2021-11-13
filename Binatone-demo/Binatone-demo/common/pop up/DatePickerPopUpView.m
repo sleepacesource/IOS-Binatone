@@ -11,6 +11,7 @@
 @interface DatePickerPopUpView ()
 @property (nonatomic, copy) void(^confirmCallback)(NSDate *date);
 @property (nonatomic, weak) IBOutlet UIView *line;
+@property (nonatomic, weak) IBOutlet UIView *popview;
 @end
 
 @implementation DatePickerPopUpView
@@ -27,6 +28,7 @@
     
     [Utils setButton:self.cancelBtn title:LocalizedString(@"cancel")];
     [Utils setButton:self.confirmBtn title:LocalizedString(@"confirm")];
+    
 }
 
 - (void)unshowAnimated:(BOOL)animated {

@@ -87,7 +87,8 @@ enum {
     
     NSDate *date = [NSDate date];
     NSInteger timestamp = [date timeIntervalSince1970];
-    UInt32 startTime = (UInt32)(timestamp - 24 * 3600 * 7);
+//    UInt32 startTime = (UInt32)(timestamp - 24 * 3600 * 7);
+    UInt32 startTime = 0;
     KFLog_Normal(YES, @"get history data");
     
     [SLPBLESharedManager binatone:SharedDataManager.peripheral getHistoryData:startTime endTime:timestamp sex:0 each:^(NSInteger index, NSInteger count, BinatoneHistoryData *data, BinatoneOriginalData *originalData) {
@@ -96,6 +97,7 @@ enum {
         KFLog_Normal(YES, @"download history data finished %ld",(long)status);
         NSLog(@"originalDataList === %@",[weakSelf originalDataListWith:[originalDataList lastObject]]);
         [weakSelf unshowLoadingView];
+        
         BinatoneHistoryData *data = [dataList lastObject];
         if (data) {
             [Coordinate pushToHistoryData:data type:E_HistoryDataType_History sender:weakSelf animated:YES];

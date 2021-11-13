@@ -21,6 +21,8 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>&quot;Please turn on Bluetooth in \&quot;Settings&gt;Bluetooth\&quot;. Otherwise, device can not be connected.&quot;</string>
+	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>UIFileSharingEnabled</key>
 	<true/>

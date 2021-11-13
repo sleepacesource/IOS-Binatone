@@ -17,7 +17,7 @@
 @end
 
 @interface BinatoneHistoryDataRecord : NSObject
-@property (nonatomic,assign) UInt32 br;//呼吸率
+@property (nonatomic,assign) UInt32 br;//呼吸率 //4个字节，32位
 @property (nonatomic,assign) UInt32 hr;//心率
 @property (nonatomic,assign) UInt32 status;//状态
 @property (nonatomic,assign) UInt32 statusValue;//状态值

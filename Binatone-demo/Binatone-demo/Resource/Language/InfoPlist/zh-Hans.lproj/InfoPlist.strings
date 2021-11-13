@@ -11,3 +11,4 @@ NSCameraUsageDescription = "请选择“好”以允许访问。若不允许，�
 NSBluetoothPeripheralUsageDescription = "请在iPhone“设置>蓝牙”开启蓝牙。若不允许，你将无法连接设备";
 NSHealthShareUsageDescription = "请选择“好”以允许访问。若不允许，你将无法将Sleepace的数据同步到Health";
 NSHealthUpdateUsageDescription = "请选择“好”以允许访问。若不允许，你将无法将Sleepace的数据同步到Health";
+NSBluetoothAlwaysUsageDescription = "请在iPhone“设置>蓝牙”开启蓝牙。若不允许，你将无法连接设备";

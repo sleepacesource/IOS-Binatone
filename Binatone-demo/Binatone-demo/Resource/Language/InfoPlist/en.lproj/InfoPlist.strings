@@ -11,3 +11,4 @@ NSCameraUsageDescription = "Please click \"OK\" to allow access.Otherwise,�
 NSBluetoothPeripheralUsageDescription = "Please turn on Bluetooth in \"Settings>Bluetooth\". Otherwise, device can not be connected.";
 NSHealthShareUsageDescription = "Please click \"OK\" to allow access.Otherwise, you can not sync data to “Health”";
 NSHealthUpdateUsageDescription = "Please click \"OK\" to allow access.Otherwise, you can not sync data to “Health”";
+NSBluetoothAlwaysUsageDescription = "Please turn on Bluetooth in \"Settings>Bluetooth\". Otherwise, device can not be connected.";

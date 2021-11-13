@@ -1,52 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="19z-nR-rf6" customClass="DatePickerPopUpView">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2N4-9z-FKF">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DNC-lB-OHc">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o2J-mx-qvI">
-                            <rect key="frame" x="0.0" y="401" width="375" height="266"/>
+                            <rect key="frame" x="0.0" y="470" width="414" height="266"/>
                             <subviews>
-                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="opI-dq-5O9">
-                                    <rect key="frame" x="0.0" y="50" width="375" height="216"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="216" id="zoI-3j-FSO"/>
-                                    </constraints>
-                                    <date key="date" timeIntervalSinceReferenceDate="557142249.28149199">
-                                        <!--2018-08-28 09:44:09 +0000-->
-                                    </date>
-                                </datePicker>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jX8-sW-6Hh">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vgf-Rr-JXM">
+                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vgf-Rr-JXM">
                                             <rect key="frame" x="0.0" y="0.0" width="66" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="YuX-HD-EeS"/>
+                                            </constraints>
                                             <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                             <state key="normal" title="Button"/>
                                             <connections>
                                                 <action selector="cancelClicked:" destination="19z-nR-rf6" eventType="touchUpInside" id="0Ua-7p-h8n"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t4F-5b-Wlx">
-                                            <rect key="frame" x="309" y="0.0" width="66" height="50"/>
+                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t4F-5b-Wlx">
+                                            <rect key="frame" x="348" y="0.0" width="66" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="ido-gM-SXP"/>
+                                            </constraints>
                                             <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                             <state key="normal" title="Button"/>
                                             <connections>
@@ -54,13 +49,16 @@
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JDV-rX-XZU">
-                                            <rect key="frame" x="66" y="0.0" width="243" height="50"/>
+                                            <rect key="frame" x="66" y="0.0" width="282" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="l3c-MQ-OER"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E9T-AT-NLV">
-                                            <rect key="frame" x="-14" y="49" width="400" height="1"/>
+                                            <rect key="frame" x="-14" y="49" width="439" height="1"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="oSQ-dp-u8Z"/>
@@ -71,6 +69,7 @@
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="E9T-AT-NLV" secondAttribute="bottom" id="6df-96-EB7"/>
                                         <constraint firstAttribute="trailing" secondItem="E9T-AT-NLV" secondAttribute="trailing" constant="-11" id="QKb-YZ-ocX"/>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="Sgd-lo-lVa"/>
                                         <constraint firstItem="t4F-5b-Wlx" firstAttribute="top" secondItem="jX8-sW-6Hh" secondAttribute="top" id="W3E-Mi-QnR"/>
                                         <constraint firstAttribute="bottom" secondItem="vgf-Rr-JXM" secondAttribute="bottom" id="b5u-G8-e4k"/>
                                         <constraint firstAttribute="bottom" secondItem="JDV-rX-XZU" secondAttribute="bottom" id="c0f-oP-eKM"/>
@@ -85,15 +84,19 @@
                                         <constraint firstAttribute="height" constant="50" id="wDG-qd-dzr"/>
                                     </constraints>
                                 </view>
+                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="5Xt-fM-gVQ">
+                                    <rect key="frame" x="0.0" y="50" width="414" height="216"/>
+                                </datePicker>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="opI-dq-5O9" firstAttribute="leading" secondItem="o2J-mx-qvI" secondAttribute="leading" id="0q3-g9-FCN"/>
+                                <constraint firstAttribute="bottom" secondItem="5Xt-fM-gVQ" secondAttribute="bottom" id="DbV-Hl-Hfk"/>
+                                <constraint firstItem="5Xt-fM-gVQ" firstAttribute="leading" secondItem="o2J-mx-qvI" secondAttribute="leading" id="RWL-53-qmB"/>
+                                <constraint firstItem="jX8-sW-6Hh" firstAttribute="top" secondItem="o2J-mx-qvI" secondAttribute="top" id="ezq-dF-CEU"/>
                                 <constraint firstAttribute="height" constant="266" id="ftK-rP-anF"/>
-                                <constraint firstItem="opI-dq-5O9" firstAttribute="top" secondItem="jX8-sW-6Hh" secondAttribute="bottom" id="jxX-Da-hMK"/>
-                                <constraint firstAttribute="bottom" secondItem="opI-dq-5O9" secondAttribute="bottom" id="kJ9-MP-Mvt"/>
-                                <constraint firstAttribute="trailing" secondItem="opI-dq-5O9" secondAttribute="trailing" id="nmm-aN-WC1"/>
+                                <constraint firstAttribute="trailing" secondItem="5Xt-fM-gVQ" secondAttribute="trailing" id="k3N-0h-e3P"/>
                                 <constraint firstItem="jX8-sW-6Hh" firstAttribute="leading" secondItem="o2J-mx-qvI" secondAttribute="leading" id="scW-ol-osY"/>
+                                <constraint firstItem="5Xt-fM-gVQ" firstAttribute="top" secondItem="jX8-sW-6Hh" secondAttribute="bottom" id="tC8-15-svk"/>
                                 <constraint firstAttribute="trailing" secondItem="jX8-sW-6Hh" secondAttribute="trailing" id="xeN-73-aoA"/>
                             </constraints>
                         </view>
@@ -123,13 +126,13 @@
                 <outlet property="confirmBtn" destination="t4F-5b-Wlx" id="0XW-bl-6T0"/>
                 <outlet property="contentBottomEdge" destination="w9v-bC-7y6" id="6Wu-1s-cQj"/>
                 <outlet property="contentHeight" destination="ftK-rP-anF" id="GyI-9L-1N7"/>
-                <outlet property="contentView" destination="o2J-mx-qvI" id="04u-nV-Qz1"/>
-                <outlet property="datePicker" destination="opI-dq-5O9" id="pO9-pD-gKq"/>
+                <outlet property="datePicker" destination="5Xt-fM-gVQ" id="DuG-ww-X29"/>
                 <outlet property="line" destination="E9T-AT-NLV" id="12x-l3-fuy"/>
                 <outlet property="maskView" destination="2N4-9z-FKF" id="pO1-pC-XE8"/>
+                <outlet property="popview" destination="o2J-mx-qvI" id="djS-oW-4KM"/>
                 <outlet property="titleLabel" destination="JDV-rX-XZU" id="XAr-ei-Yn5"/>
             </connections>
-            <point key="canvasLocation" x="33.5" y="53.5"/>
+            <point key="canvasLocation" x="33.333333333333336" y="52.989130434782609"/>
         </view>
     </objects>
 </document>
