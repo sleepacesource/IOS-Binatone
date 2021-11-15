@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "SLPBLEDef.h"
 #import <SLPCommon/SLPCommon.h>
-
+#import <CoreBluetooth/CoreBluetooth.h>
 
 @class CBCentralManager;
 @class SLPPeripheral;

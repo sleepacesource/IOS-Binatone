@@ -254,24 +254,28 @@ enum {
 
 - (void)deviceDisconnected:(NSNotification *)notfication {
     if (SharedDataManager.connectList.count>0) {
-        SLPPeripheralInfo *info = [SharedDataManager.connectList objectAtIndex:disconnectIndexRow];
-        [SharedDataManager.connectList removeObjectAtIndex:disconnectIndexRow];
-        [self.connectTableview reloadData];
-        if([SharedDataManager.deviceName isEqualToString:info.name]) {
-            if (SharedDataManager.connectList.count>0) {
-                SLPPeripheralInfo *newinfo = [SharedDataManager.connectList objectAtIndex:0];
-                SharedDataManager.deviceName = newinfo.name;
-                SharedDataManager.peripheral = newinfo.peripheral;
-                [self showDevice];
-            }
-            else{
-                self.connected = NO;
-                [self showConnected:NO];
-                [SharedDataManager toInit];
-                [self showDevice];
+       NSString *deviceName =[notfication.object objectForKey:@"deviceName"];
+        for (int i= 0; i< SharedDataManager.connectList.count; i++) {
+            SLPPeripheralInfo *info = [SharedDataManager.connectList objectAtIndex:i];
+            if ([info.name hasPrefix:deviceName]) {
+                [SharedDataManager.connectList removeObjectAtIndex:i];
+                [self.connectTableview reloadData];
+                if([SharedDataManager.deviceName isEqualToString:info.name]) {
+                    if (SharedDataManager.connectList.count>0) {
+                        SLPPeripheralInfo *newinfo = [SharedDataManager.connectList objectAtIndex:0];
+                        SharedDataManager.deviceName = newinfo.name;
+                        SharedDataManager.peripheral = newinfo.peripheral;
+                        [self showDevice];
+                    }
+                    else{
+                        self.connected = NO;
+                        [self showConnected:NO];
+                        [self showDevice];
+                        [SharedDataManager toInit];
+                    }
+                }
             }
         }
-        disconnectIndexRow = 0;
     }
 }
 
@@ -425,11 +429,11 @@ enum {
 
 - (IBAction)upgradeClicked:(id)sender {
     KFLog_Normal(YES, @"upgrade");
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"MBP89SN-v1.51b(v2.0.02b)-ug-20211112" ofType:@"des"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"MBP89SN-v1.52b(v2.0.02b)-ug-20211115" ofType:@"des"];
     NSData *data = [NSData dataWithContentsOfFile:path];
     __weak typeof(self) weakSelf = self;
     SLPLoadingBlockView *loadingView = [self showLoadingView];
-    [SLPBLESharedManager binatone:SharedDataManager.peripheral upgradeDeviceWithCrcDes:(long)3233027978 crcBin:(long)55010912 upgradePackage:data callback:^(SLPDataTransferStatus status, id data) {
+    [SLPBLESharedManager binatone:SharedDataManager.peripheral upgradeDeviceWithCrcDes:(long)854794341 crcBin:(long)1774760471 upgradePackage:data callback:^(SLPDataTransferStatus status, id data) {
         if (status != SLPDataTransferStatus_Succeed){
             [weakSelf unshowLoadingView];
             [Utils showAlertTitle:nil message:LocalizedString(@"up_failed") confirmTitle:LocalizedString(@"confirm") atViewController:weakSelf];

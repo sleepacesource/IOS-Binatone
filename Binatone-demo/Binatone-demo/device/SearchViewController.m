@@ -48,9 +48,9 @@ enum {
     }
     
     //蓝牙名称不过滤
-//    if (![info.name hasPrefix:@"MBP"]) {
-//        return;
-//    }
+    if (![info.name hasPrefix:@"MBP"]) {
+        return;
+    }
     for (SLPPeripheralInfo *aInfo in self.deviceList) {
         if ([info.name isEqualToString:aInfo.name]) {
             return;
@@ -88,6 +88,7 @@ enum {
     [self showLoadingView];
     UInt32 time = [[NSDate date] timeIntervalSince1970];
     NSInteger timezone = [[NSTimeZone systemTimeZone] secondsFromGMT];
+    NSLog(@"device list----%@",SharedDataManager.connectList);
     [SLPBLESharedManager binatone:info.peripheral loginWithDeviceName:info.name userId:userID time:time timezone:timezone DSTOffset:0 callback:^(SLPDataTransferStatus status, id data) {
         if (status == SLPDataTransferStatus_Succeed) {
             BinatoneDeviceInfo *deviceInfo = data;
@@ -95,6 +96,7 @@ enum {
             SharedDataManager.deviceName = info.name;
             SharedDataManager.peripheral = info.peripheral;
             [SharedDataManager.connectList addObject:info]; //连接设备数组数组
+            NSLog(@"device list afeter----%@",SharedDataManager.connectList);
             [weakSelf.navigationController popViewControllerAnimated:YES];
         }else{
             [Utils showDeviceOperationFailed:status atViewController:weakSelf];
