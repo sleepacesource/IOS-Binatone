@@ -11,4 +11,5 @@
 @class BinatoneAlarm;
 @interface AlarmTimeViewController : BaseViewController
 @property (nonatomic, strong)BinatoneAlarm *alarmData;
+@property (nonatomic, assign)int timeType;
 @end

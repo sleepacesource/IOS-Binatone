@@ -72,6 +72,9 @@ enum {
 @property (nonatomic, weak) IBOutlet UIView *alarmTimeDownLine;
 @property (nonatomic, weak) IBOutlet UILabel *alarmTimeLabelValue;
 
+@property (nonatomic, weak) IBOutlet UILabel *alarmTimeLabel2;
+@property (nonatomic, weak) IBOutlet UILabel *alarmTimeLabelValue2;
+
 @property (nonatomic, strong) BinatoneAlarm *alarmInfo;
 @property (nonatomic, strong) BinatoneAlarm *leftBedAlarmInfo;
 @property (nonatomic, assign) BOOL connected;
@@ -137,6 +140,7 @@ enum {
     [self.alarmTitleLabel setText:LocalizedString(@"apnea_alert")];
     [self.alarmTimeIcon setImage:[UIImage imageNamed:@"common_list_icon_leftarrow.png"]];
     [self.alarmTimeLabel setText:LocalizedString(@"set_alert_switch")];
+    [self.alarmTimeLabel2 setText:LocalizedString(@"set_alert_switch")];
     
     [self.userIDTitleLabel setText:LocalizedString(@"userid_sync_sleep")];
     [self.deviceInfoSectionLabel setText:LocalizedString(@"device_infos")];
@@ -153,6 +157,8 @@ enum {
     [Utils configCellTitleLabel:self.alarmTitleLabel];
     [Utils configCellTitleLabel:self.alarmTimeLabel];
     [Utils configCellTitleLabel:self.alarmTimeLabelValue];
+    [Utils configCellTitleLabel:self.alarmTimeLabel2];
+    [Utils configCellTitleLabel:self.alarmTimeLabelValue2];
     
     self.userIDLabel.keyboardType = UIKeyboardTypeNumberPad;
     [self.userIDLabel setTextColor:Theme.C3];
@@ -170,9 +176,13 @@ enum {
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSString *time = [[NSUserDefaults standardUserDefaults]objectForKey:@"TimeString"];
-    if (time&&time.length>0) {
-        self.alarmTimeLabelValue.text = time;
+    NSString *breathTime = [[NSUserDefaults standardUserDefaults]objectForKey:@"BreathTimeString"];
+    if (breathTime&&breathTime.length>0) {
+        self.alarmTimeLabelValue.text = breathTime;
+    }
+    NSString *leftBedTime = [[NSUserDefaults standardUserDefaults]objectForKey:@"LeftBedTimeString"];
+    if (leftBedTime&&leftBedTime.length>0) {
+        self.alarmTimeLabelValue2.text = leftBedTime;
     }
 }
 
@@ -479,7 +489,11 @@ enum {
 }
 
 - (IBAction)alarmTimeEdit:(id)sender {
-    [Coordinate pushToAlarmTime:self.alarmInfo sender:self aniamted:YES];
+    [Coordinate pushToAlarmTime:self.alarmInfo type:2 sender:self aniamted:YES];
+}
+
+- (IBAction)leftBedAlarmTimeEdit:(id)sender {
+    [Coordinate pushToAlarmTime:self.leftBedAlarmInfo type:1 sender:self aniamted:YES];
 }
 
 

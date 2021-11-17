@@ -12,5 +12,5 @@
 
 + (void)pushViewControllerName:(NSString *)name sender:(UIViewController *)sender animated:(BOOL)animated;
 + (void)pushToHistoryData:(id)data type:(int)type sender:(UIViewController *)sender animated:(BOOL)animated;
-+ (void)pushToAlarmTime:(id)data sender:(UIViewController *)sender aniamted:(BOOL)animated;
++ (void)pushToAlarmTime:(id)data type:(int)type sender:(UIViewController *)sender aniamted:(BOOL)animated;
 @end

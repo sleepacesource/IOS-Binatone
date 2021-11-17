@@ -106,14 +106,19 @@ enum{
         UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
          UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(10, 0, 100, 50)];
          label.textColor=[UIColor blackColor];
+        
+        UILabel *label2=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width -100, 0, 100, 50)];
+        label2.textColor=[UIColor blackColor];
+        label2.text = LocalizedString(@"duration");
          if(section==1)
          {
-             label.text= LocalizedString(@"Left bed");
+             label.text = LocalizedString(@"Left bed");
          }else if(section==2)
          {
-             label.text=LocalizedString(@"breath_stop");
+             label.text= LocalizedString(@"breath_stop");
          }
-         [view addSubview:label];
+        [view addSubview:label];
+        [view addSubview:label2];
          return  view;
     }
 }
@@ -172,14 +177,14 @@ enum{
         {
             NSArray *item = self.historyData.analysis.leftBedArray[indexPath.row];
             cell.textLabel.text = [NSString stringWithFormat:@"%@",[self timestampToDate:[item[0] integerValue]]];
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%lds",LocalizedString(@"duration"),[item[1] integerValue]];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%lds",[item[1] integerValue]];
         }
             break;
         case 2:
         {
             NSArray *item = self.historyData.analysis.apneaArray[indexPath.row];
             cell.textLabel.text = [NSString stringWithFormat:@"%@",[self timestampToDate:[item[0] integerValue]]];
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%lds",LocalizedString(@"duration"),[item[1] integerValue]];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%lds",[item[1] integerValue]];
         }
             break;
             

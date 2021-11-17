@@ -132,23 +132,44 @@ enum {
     
     BOOL on = self.alarmData.enable;
     NSInteger len = self.endTime.hour * 60 + self.endTime.minute - self.beginTime.hour * 60 - self.beginTime.minute;
-    if (len < 0) {
+    if (len <= 0) {
         len += 24 * 60;
     }
     __weak typeof(self) weakSelf = self;
     KFLog_Normal(YES, @"save alarm");
-    [SLPBLESharedManager binatone:SharedDataManager.peripheral setApneaAlarmEnable:on hour:self.beginTime.hour minute:self.beginTime.minute length:len timeout:0 compeltion:^(SLPDataTransferStatus status, id data) {
-        if (status != SLPDataTransferStatus_Succeed) {
-            [Utils showDeviceOperationFailed:status atViewController:weakSelf];
-        }else{
-            weakSelf.alarmData.hour = weakSelf.beginTime.hour;
-            weakSelf.alarmData.minute = weakSelf.beginTime.minute;
-            weakSelf.alarmData.length = len;
-            [weakSelf.navigationController popViewControllerAnimated:YES];
-            
-            NSString *setTime = [NSString stringWithFormat:@"%02d:%02d-%02d:%02d",weakSelf.beginTime.hour,weakSelf.beginTime.minute,weakSelf.endTime.hour,weakSelf.endTime.minute];
-            [[NSUserDefaults standardUserDefaults] setObject:setTime forKey:@"TimeString"];
-        }
-    }];
+    
+    if (self.timeType == 2) {
+        [SLPBLESharedManager binatone:SharedDataManager.peripheral setApneaAlarmEnable:on hour:self.beginTime.hour minute:self.beginTime.minute length:len timeout:0 compeltion:^(SLPDataTransferStatus status, id data) {
+            if (status != SLPDataTransferStatus_Succeed) {
+                [Utils showDeviceOperationFailed:status atViewController:weakSelf];
+            }else{
+                weakSelf.alarmData.hour = weakSelf.beginTime.hour;
+                weakSelf.alarmData.minute = weakSelf.beginTime.minute;
+                weakSelf.alarmData.length = len;
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+                
+                NSString *setTime = [NSString stringWithFormat:@"%02d:%02d-%02d:%02d",weakSelf.beginTime.hour,weakSelf.beginTime.minute,weakSelf.endTime.hour,weakSelf.endTime.minute];
+                [[NSUserDefaults standardUserDefaults] setObject:setTime forKey:@"BreathTimeString"];
+            }
+        }];
+    }
+    else{
+        [SLPBLESharedManager binatone:SharedDataManager.peripheral setLeftBedAlarmEnable:on hour:self.beginTime.hour minute:self.beginTime.minute length:len timeout:0 compeltion:^(SLPDataTransferStatus status, id data) {
+            if (status != SLPDataTransferStatus_Succeed) {
+                [Utils showDeviceOperationFailed:status atViewController:weakSelf];
+            }else{
+                weakSelf.alarmData.hour = weakSelf.beginTime.hour;
+                weakSelf.alarmData.minute = weakSelf.beginTime.minute;
+                weakSelf.alarmData.length = len;
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+                
+                NSString *setTime = [NSString stringWithFormat:@"%02d:%02d-%02d:%02d",weakSelf.beginTime.hour,weakSelf.beginTime.minute,weakSelf.endTime.hour,weakSelf.endTime.minute];
+                [[NSUserDefaults standardUserDefaults] setObject:setTime forKey:@"LeftBedTimeString"];
+            }
+        }];
+    }
+    
 }
+
+
 @end

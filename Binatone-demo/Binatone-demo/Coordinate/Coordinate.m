@@ -24,8 +24,9 @@
     [sender.navigationController pushViewController:viewController animated:animated];
 }
 
-+ (void)pushToAlarmTime:(id)data sender:(UIViewController *)sender aniamted:(BOOL)animated {
++ (void)pushToAlarmTime:(id)data type:(int)type sender:(UIViewController *)sender aniamted:(BOOL)animated {
     AlarmTimeViewController *viewController = [AlarmTimeViewController new];
+    [viewController setTimeType:type];
     [viewController setAlarmData:data];
     [sender.navigationController pushViewController:viewController animated:animated];
 }
