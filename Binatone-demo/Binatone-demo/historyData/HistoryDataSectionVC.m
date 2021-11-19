@@ -38,12 +38,31 @@ enum {
 }
 
 #pragma mark UITableViewDelegate UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return  SharedDataManager.connectList.count;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return Row_Bottom;
+    return 2;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 50.0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
+    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(10, 0, 200, 50)];
+    label.textColor=[UIColor blackColor];
+    SLPPeripheralInfo *info = SharedDataManager.connectList[section];
+    [label setText:info.name];
+    [view addSubview:label];
+    return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    CGFloat height = 50;
+    return height;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -70,28 +89,28 @@ enum {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.row == Row_Syn && SharedDataManager.connected) {
-        [self synData];
+    if (indexPath.row == Row_Syn) {
+        [self synData:indexPath.section];
     }else {
         [self goToDemo];
     }
 }
 
-- (void)synData {
+- (void)synData:(NSInteger)section {
     if (![self checkAndShowAlertWithConnectStatus]) {
         return;
     }
-    
+    SLPPeripheralInfo *info = SharedDataManager.connectList[section];
     SLPLoadingBlockView *loadingView = [self showLoadingView];
     __weak typeof(self) weakSelf = self;
     
     NSDate *date = [NSDate date];
     NSInteger timestamp = [date timeIntervalSince1970];
-//    UInt32 startTime = (UInt32)(timestamp - 24 * 3600 * 7);
-    UInt32 startTime = 0;
+        UInt32 startTime = (UInt32)(timestamp - 24 * 3600 * 7);
+//    UInt32 startTime = 0;
     KFLog_Normal(YES, @"get history data");
     
-    [SLPBLESharedManager binatone:SharedDataManager.peripheral getHistoryData:startTime endTime:timestamp sex:0 each:^(NSInteger index, NSInteger count, BinatoneHistoryData *data, BinatoneOriginalData *originalData) {
+    [SLPBLESharedManager binatone:info.peripheral getHistoryData:startTime endTime:timestamp sex:0 each:^(NSInteger index, NSInteger count, BinatoneHistoryData *data, BinatoneOriginalData *originalData) {
         [loadingView setText:[NSString stringWithFormat:@"%ld/%ld", (long)index+1, (long)count]];
     } completion:^(SLPDataTransferStatus status, NSArray<BinatoneHistoryData *> *dataList, NSArray<BinatoneOriginalData *> *originalDataList) {
         KFLog_Normal(YES, @"download history data finished %ld",(long)status);
@@ -111,18 +130,18 @@ enum {
         }
     }];
     
-//    [SLPBLESharedManager binatone:SharedDataManager.peripheral getHistoryData:startTime endTime:timestamp sex:0 each:^(NSInteger index, NSInteger count, BinatoneHistoryData *data) {
-//        [loadingView setText:[NSString stringWithFormat:@"%ld/%ld", (long)index+1, (long)count]];
-//    } completion:^(SLPDataTransferStatus status, NSArray<BinatoneHistoryData *> *dataList) {
-//        KFLog_Normal(YES, @"download history data finished %d",status);
-//        [weakSelf unshowLoadingView];
-//        BinatoneHistoryData *data = [dataList lastObject];
-//        if (data) {
-//            [Coordinate pushToHistoryData:data type:E_HistoryDataType_History sender:weakSelf animated:YES];
-//        }else if (status != SLPDataTransferStatus_Succeed) {
-//            [Utils showAlertTitle:nil message:LocalizedString(@"sync_falied") confirmTitle:LocalizedString(@"confirm") atViewController:weakSelf];
-//        }
-//    }];
+    //    [SLPBLESharedManager binatone:SharedDataManager.peripheral getHistoryData:startTime endTime:timestamp sex:0 each:^(NSInteger index, NSInteger count, BinatoneHistoryData *data) {
+    //        [loadingView setText:[NSString stringWithFormat:@"%ld/%ld", (long)index+1, (long)count]];
+    //    } completion:^(SLPDataTransferStatus status, NSArray<BinatoneHistoryData *> *dataList) {
+    //        KFLog_Normal(YES, @"download history data finished %d",status);
+    //        [weakSelf unshowLoadingView];
+    //        BinatoneHistoryData *data = [dataList lastObject];
+    //        if (data) {
+    //            [Coordinate pushToHistoryData:data type:E_HistoryDataType_History sender:weakSelf animated:YES];
+    //        }else if (status != SLPDataTransferStatus_Succeed) {
+    //            [Utils showAlertTitle:nil message:LocalizedString(@"sync_falied") confirmTitle:LocalizedString(@"confirm") atViewController:weakSelf];
+    //        }
+    //    }];
 }
 
 - (NSArray *)originalDataListWith:(BinatoneOriginalData *)data
@@ -133,7 +152,7 @@ enum {
     NSMutableArray *hrArr = [NSMutableArray array];
     NSMutableArray *statusArr = [NSMutableArray array];
     NSMutableArray *statusValueArr = [NSMutableArray array];
-
+    
     NSArray *recordList = data.recordList;
     
     NSInteger count = recordList.count;
