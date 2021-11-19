@@ -440,11 +440,11 @@ enum {
 
 - (IBAction)upgradeClicked:(id)sender {
     KFLog_Normal(YES, @"upgrade");
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"MBP89SN-v1.52b(v2.0.02b)-ug-20211115" ofType:@"des"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"MBP89SN-v1.53r(v2.0.02r)-gp-20211119" ofType:@"des"];
     NSData *data = [NSData dataWithContentsOfFile:path];
     __weak typeof(self) weakSelf = self;
     SLPLoadingBlockView *loadingView = [self showLoadingView];
-    [SLPBLESharedManager binatone:SharedDataManager.peripheral upgradeDeviceWithCrcDes:(long)854794341 crcBin:(long)1774760471 upgradePackage:data callback:^(SLPDataTransferStatus status, id data) {
+    [SLPBLESharedManager binatone:SharedDataManager.peripheral upgradeDeviceWithCrcDes:(long)2806082678 crcBin:(long)4130003188 upgradePackage:data callback:^(SLPDataTransferStatus status, id data) {
         if (status != SLPDataTransferStatus_Succeed){
             [weakSelf unshowLoadingView];
             [Utils showAlertTitle:nil message:LocalizedString(@"up_failed") confirmTitle:LocalizedString(@"confirm") atViewController:weakSelf];
@@ -537,6 +537,7 @@ enum {
         {
             SLPPeripheralInfo *info = [SharedDataManager.connectList objectAtIndex:row];
             title = info.name;
+            [cell.cellImageView setImage:[UIImage imageNamed:@"ic_shanchu.png"]];
             cell.cellClickBlock = ^(BOOL click){
                 [self disconnectDevice:(int)indexPath.row];
             };

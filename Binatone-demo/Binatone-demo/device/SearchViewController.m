@@ -46,7 +46,6 @@ enum {
     if (info.name.length == 0) {
         return;
     }
-    
     //蓝牙名称不过滤
     if (![info.name hasPrefix:@"MBP"]) {
         return;
