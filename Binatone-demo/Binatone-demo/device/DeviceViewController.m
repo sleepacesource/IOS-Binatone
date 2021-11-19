@@ -174,18 +174,6 @@ enum {
     [self reloadAlarmInfo];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    NSString *breathTime = [[NSUserDefaults standardUserDefaults]objectForKey:@"BreathTimeString"];
-    if (breathTime&&breathTime.length>0) {
-        self.alarmTimeLabelValue.text = breathTime;
-    }
-    NSString *leftBedTime = [[NSUserDefaults standardUserDefaults]objectForKey:@"LeftBedTimeString"];
-    if (leftBedTime&&leftBedTime.length>0) {
-        self.alarmTimeLabelValue2.text = leftBedTime;
-    }
-}
-
 - (void)tap:(UIGestureRecognizer *)gesture {
     [self.userIDLabel resignFirstResponder];
 }
@@ -220,13 +208,13 @@ enum {
     indexRow = -1;
     [self showConnected:SharedDataManager.connected];
     
-    [self updateAlarmInfo];
-    if (SharedDataManager.connected) {
-        [self leftBedAlarmEnableValueChanged:self.leftBedAlarmEnableSwitch];
-    }
     if (SharedDataManager.connectList.count) {
         [self.connectTableview reloadData];
         [self showDevice];
+    }
+    if (SharedDataManager.connected) {
+        [self getAlarmInfo:SharedDataManager.peripheral];
+        [self getLeftBedAlarmInfo:SharedDataManager.peripheral];
     }
 }
 
@@ -250,16 +238,13 @@ enum {
     [notificationCeter addObserver:self selector:@selector(deviceDisconnected:) name:kNotificationNameBLEDeviceDisconnect object:nil];
 }
 
-- (void)updateAlarmInfo {
-    self.leftBedAlarmInfo.hour = self.alarmInfo.hour;
-    self.leftBedAlarmInfo.minute = self.alarmInfo.minute;
-    self.leftBedAlarmInfo.length = self.alarmInfo.length;
-}
 
 - (void)deviceConnected:(NSNotification *)notification {
     self.connected = YES;
     [self showConnected:YES];
     //    [self getAlarmInfo:notification.object];
+    
+    
 }
 
 - (void)deviceDisconnected:(NSNotification *)notfication {
@@ -293,12 +278,27 @@ enum {
     BOOL on = NO;
     if (self.alarmInfo) {
         on = self.alarmInfo.enable;
+        int total = (self.alarmInfo.hour * 60 + self.alarmInfo.minute + self.alarmInfo.length);
+        if (total >= 24*60) {
+            total = total - 24*60;
+        }
+        int endHour = total/60;
+        int endMint = total%60;
+        self.alarmTimeLabelValue.text = [NSString stringWithFormat:@"%02d:%02d-%02d:%02d",self.alarmInfo.hour,self.alarmInfo.minute,endHour,endMint];
+        
     }
     [self.alarmEnableSwitch setOn:on];
     
     on = NO;
     if (self.leftBedAlarmInfo) {
         on = self.leftBedAlarmInfo.enable;
+        int total = (self.leftBedAlarmInfo.hour * 60 + self.leftBedAlarmInfo.minute + self.leftBedAlarmInfo.length);
+        if (total >= 24*60) {
+            total = total - 24*60;
+        }
+        int endHour = total/60;
+        int endMint = total%60;
+        self.alarmTimeLabelValue2.text = [NSString stringWithFormat:@"%02d:%02d-%02d:%02d",self.leftBedAlarmInfo.hour,self.leftBedAlarmInfo.minute,endHour,endMint];
     }
     [self.leftBedAlarmEnableSwitch setOn:on];
 }
