@@ -254,6 +254,7 @@ enum {
             SLPPeripheralInfo *info = [SharedDataManager.connectList objectAtIndex:i];
             if ([info.name hasPrefix:deviceName]) {
                 [SharedDataManager.connectList removeObjectAtIndex:i];
+                [SharedDataManager.connectListInrealtime removeObjectAtIndex:i];
                 [self.connectTableview reloadData];
                 if([SharedDataManager.deviceName isEqualToString:info.name]) {
                     if (SharedDataManager.connectList.count>0) {

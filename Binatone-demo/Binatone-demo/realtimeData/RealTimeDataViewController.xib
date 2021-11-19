@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RealTimeDataViewController">
             <connections>
+                <outlet property="deviceLabel" destination="cvj-nr-NPA" id="XCp-9x-tZS"/>
                 <outlet property="hour24SectionHeader" destination="Jjy-21-iO5" id="RQi-oh-Zje"/>
                 <outlet property="hour24SectionHeaderTitleLabel" destination="mp0-CT-ggy" id="vGA-Xd-PbG"/>
                 <outlet property="line" destination="5yZ-FA-osW" id="RDt-KD-b5o"/>
@@ -19,7 +19,7 @@
                 <outlet property="navigationShellHeight" destination="UwX-Sf-kpg" id="sTg-fl-oEF"/>
                 <outlet property="realtimeButton" destination="UuZ-5V-K4G" id="ab2-f7-KuB"/>
                 <outlet property="realtimeSectionHeader" destination="WqC-x8-XI0" id="gOu-RU-Fbv"/>
-                <outlet property="realtimeSectionHeaderTitleLabel" destination="cvj-nr-NPA" id="DRh-Uz-ZwZ"/>
+                <outlet property="realtimeSectionHeaderTitleLabel" destination="atp-Kw-zX3" id="mqS-p2-8Is"/>
                 <outlet property="tableView" destination="dMH-1N-M7H" id="i7q-Dw-pKJ"/>
                 <outlet property="titleLabel" destination="EVB-gd-dnz" id="s9A-Pv-3IM"/>
                 <outlet property="view" destination="L0o-Nb-2Wb" id="JWS-Xc-f1U"/>
@@ -71,9 +71,9 @@
                         <constraint firstItem="5yZ-FA-osW" firstAttribute="leading" secondItem="xcY-49-jVV" secondAttribute="leading" id="oMi-GO-Da3"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dMH-1N-M7H">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="dMH-1N-M7H">
                     <rect key="frame" x="0.0" y="65" width="375" height="602"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="xCl-Kz-xy8"/>
                         <outlet property="delegate" destination="-1" id="HZ1-o4-vpr"/>
@@ -114,7 +114,7 @@
             <point key="canvasLocation" x="-355" y="-410"/>
         </view>
         <view contentMode="scaleToFill" id="WqC-x8-XI0">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cvj-nr-NPA">
@@ -123,8 +123,17 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UuZ-5V-K4G">
-                    <rect key="frame" x="15" y="60" width="345" height="50"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atp-Kw-zX3">
+                    <rect key="frame" x="16" y="60" width="345" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="Azt-89-OaO"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UuZ-5V-K4G">
+                    <rect key="frame" x="15" y="100" width="345" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="PXa-8C-0B1"/>
                     </constraints>
@@ -136,16 +145,24 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="UuZ-5V-K4G" firstAttribute="top" secondItem="cvj-nr-NPA" secondAttribute="bottom" constant="15" id="Eso-dH-gqX"/>
+                <constraint firstItem="atp-Kw-zX3" firstAttribute="top" secondItem="cvj-nr-NPA" secondAttribute="bottom" constant="15" id="9rd-bX-w5W"/>
+                <constraint firstAttribute="trailing" secondItem="atp-Kw-zX3" secondAttribute="trailing" constant="14" id="R2e-Ce-W57"/>
                 <constraint firstAttribute="trailing" secondItem="UuZ-5V-K4G" secondAttribute="trailing" constant="15" id="UHS-Cq-30m"/>
+                <constraint firstItem="atp-Kw-zX3" firstAttribute="leading" secondItem="WqC-x8-XI0" secondAttribute="leading" constant="16" id="XYy-Mo-aVe"/>
                 <constraint firstItem="cvj-nr-NPA" firstAttribute="top" secondItem="WqC-x8-XI0" secondAttribute="top" constant="25" id="ZjR-7h-QW7"/>
                 <constraint firstAttribute="bottom" secondItem="UuZ-5V-K4G" secondAttribute="bottom" id="elC-xZ-uqt"/>
                 <constraint firstAttribute="trailing" secondItem="cvj-nr-NPA" secondAttribute="trailing" constant="15" id="hFu-c8-gv2"/>
+                <constraint firstItem="UuZ-5V-K4G" firstAttribute="top" secondItem="atp-Kw-zX3" secondAttribute="bottom" constant="15" id="r9a-S9-4FA"/>
                 <constraint firstItem="cvj-nr-NPA" firstAttribute="leading" secondItem="WqC-x8-XI0" secondAttribute="leading" constant="15" id="sMU-BG-6w0"/>
                 <constraint firstItem="UuZ-5V-K4G" firstAttribute="leading" secondItem="WqC-x8-XI0" secondAttribute="leading" constant="15" id="zoR-b9-Sx5"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-314" y="-186"/>
+            <point key="canvasLocation" x="-314.39999999999998" y="-186.20689655172416"/>
         </view>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

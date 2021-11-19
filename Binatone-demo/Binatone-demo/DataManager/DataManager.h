@@ -19,6 +19,7 @@
 @property (nonatomic, assign) BOOL connected;
 @property (nonatomic, strong) NSString *userID;
 @property(nonatomic, strong) NSMutableArray<SLPPeripheralInfo *> *connectList;
+@property(nonatomic, strong) NSMutableArray  *connectListInrealtime;
 
 + (DataManager *)sharedDataManager;
 

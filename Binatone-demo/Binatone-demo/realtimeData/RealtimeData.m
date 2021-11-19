@@ -19,5 +19,7 @@
 
 - (void)toInit {
     self.status = RealtimeDataStaus_Invalid;
+    self.heartRate = @"--";
+    self.breathRate = @"--";
 }
 @end

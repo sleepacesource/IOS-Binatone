@@ -11,6 +11,8 @@
 		265F16DA272AA8B5009AB9A2 /* ImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 265F16D8272AA8B5009AB9A2 /* ImageTableViewCell.xib */; };
 		265F16DD272AAEC3009AB9A2 /* ic_shanchu.png in Resources */ = {isa = PBXBuildFile; fileRef = 265F16DC272AAEC2009AB9A2 /* ic_shanchu.png */; };
 		26B805DE2745E7CA00A9D3A6 /* MBP89SN-v1.52b(v2.0.02b)-ug-20211115.des in Resources */ = {isa = PBXBuildFile; fileRef = 26B805DD2745E7CA00A9D3A6 /* MBP89SN-v1.52b(v2.0.02b)-ug-20211115.des */; };
+		26B805E12747718300A9D3A6 /* CustomHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B805E02747718200A9D3A6 /* CustomHeader.m */; };
+		26B805E3274771C100A9D3A6 /* CustomHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26B805E2274771C100A9D3A6 /* CustomHeader.xib */; };
 		5B2A9AA3212E4E8A0015C210 /* DeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2A9AA1212E4E8A0015C210 /* DeviceViewController.m */; };
 		5B2A9AA4212E4E8A0015C210 /* DeviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B2A9AA2212E4E8A0015C210 /* DeviceViewController.xib */; };
 		5B2A9AA8212E4E9F0015C210 /* RealTimeDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2A9AA6212E4E9F0015C210 /* RealTimeDataViewController.m */; };
@@ -73,6 +75,9 @@
 		265F16D8272AA8B5009AB9A2 /* ImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageTableViewCell.xib; sourceTree = "<group>"; };
 		265F16DC272AAEC2009AB9A2 /* ic_shanchu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_shanchu.png; sourceTree = "<group>"; };
 		26B805DD2745E7CA00A9D3A6 /* MBP89SN-v1.52b(v2.0.02b)-ug-20211115.des */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MBP89SN-v1.52b(v2.0.02b)-ug-20211115.des"; sourceTree = "<group>"; };
+		26B805DF2747718200A9D3A6 /* CustomHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomHeader.h; sourceTree = "<group>"; };
+		26B805E02747718200A9D3A6 /* CustomHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomHeader.m; sourceTree = "<group>"; };
+		26B805E2274771C100A9D3A6 /* CustomHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomHeader.xib; sourceTree = "<group>"; };
 		5B2A9AA0212E4E8A0015C210 /* DeviceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceViewController.h; sourceTree = "<group>"; };
 		5B2A9AA1212E4E8A0015C210 /* DeviceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceViewController.m; sourceTree = "<group>"; };
 		5B2A9AA2212E4E8A0015C210 /* DeviceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceViewController.xib; sourceTree = "<group>"; };
@@ -259,6 +264,9 @@
 				265F16D6272AA8B5009AB9A2 /* ImageTableViewCell.h */,
 				265F16D7272AA8B5009AB9A2 /* ImageTableViewCell.m */,
 				265F16D8272AA8B5009AB9A2 /* ImageTableViewCell.xib */,
+				26B805DF2747718200A9D3A6 /* CustomHeader.h */,
+				26B805E02747718200A9D3A6 /* CustomHeader.m */,
+				26B805E2274771C100A9D3A6 /* CustomHeader.xib */,
 				5B2A9ADC212EA6870015C210 /* consts.h */,
 			);
 			path = common;
@@ -514,6 +522,7 @@
 				5BA5DD90212CFFD60046EFEC /* Assets.xcassets in Resources */,
 				5B9DCF8D2136CD900007D4B2 /* AlarmTimeViewController.xib in Resources */,
 				5B3815A32134E1C600CC48B8 /* SearchViewController.xib in Resources */,
+				26B805E3274771C100A9D3A6 /* CustomHeader.xib in Resources */,
 				5BA5DD9C212D6DC80046EFEC /* LaunchScreen.storyboard in Resources */,
 				5B3815BB2134FDC000CC48B8 /* SLPLoadingBlockView.xib in Resources */,
 			);
@@ -531,6 +540,7 @@
 				5BC958EC2133DCD900827E36 /* VerticalDashView.m in Sources */,
 				5BBCDB0521354FFF00E498E2 /* DatePickerPopUpView.m in Sources */,
 				5B2A9AD5212E8A5A0015C210 /* BaseViewController.m in Sources */,
+				26B805E12747718300A9D3A6 /* CustomHeader.m in Sources */,
 				5B9DCF8C2136CD900007D4B2 /* AlarmTimeViewController.m in Sources */,
 				5BC958AB2133D22900827E36 /* HistoryDataView.m in Sources */,
 				5B3815A22134E1C600CC48B8 /* SearchViewController.m in Sources */,

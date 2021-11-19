@@ -96,6 +96,7 @@ enum {
             SharedDataManager.deviceName = info.name;
             SharedDataManager.peripheral = info.peripheral;
             [SharedDataManager.connectList addObject:info]; //连接设备数组数组
+            [SharedDataManager.connectListInrealtime addObject:@"0"];
             NSLog(@"device list afeter----%@",SharedDataManager.connectList);
             [weakSelf.navigationController popViewControllerAnimated:YES];
         }else{
