@@ -147,7 +147,6 @@ enum {
 - (NSArray *)originalDataListWith:(BinatoneOriginalData *)data
 {
     NSMutableArray *array = [NSMutableArray array];
-    
     NSMutableArray *brArr = [NSMutableArray array];
     NSMutableArray *hrArr = [NSMutableArray array];
     NSMutableArray *statusArr = [NSMutableArray array];
