@@ -528,6 +528,7 @@ enum {
                 case Section_Title:
                     title = LocalizedString(@"conected_device");
                     cell.cellImageView.hidden = YES;
+                    
                     break;
                 default:
                     break;
@@ -538,6 +539,7 @@ enum {
             SLPPeripheralInfo *info = [SharedDataManager.connectList objectAtIndex:row];
             title = info.name;
             [cell.cellImageView setImage:[UIImage imageNamed:@"ic_shanchu.png"]];
+            cell.cellImageView.hidden = NO;
             cell.cellClickBlock = ^(BOOL click){
                 [self disconnectDevice:(int)indexPath.row];
             };
