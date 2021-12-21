@@ -204,7 +204,7 @@ enum {
     
     //analyse original data
     //    [SLPBLESharedManager binatone:SharedDataManager.peripheral getLast24HourOriginalData:timestamp callback:^(SLPDataTransferStatus status, id data) {
-    //        BinatoneHistoryData *history= [SLPBLESharedManager analyseOriginalData:data sex:1 newVersion:NO];
+    //        BinatoneHistoryData *history= [SLPBLESharedManager analyseOriginalData:data sex:1];
     //        [weakSelf unshowLoadingView];
     //    }];
     

@@ -192,8 +192,8 @@
  @param flag 是否用新算法分析数据（Yes是，NO否），固件版本大于01.01.44用新算法判断，自己确定
  BinatoneOriginalData 原始数据(startTime，recordList)
  BinatoneHistoryData 历史分析数据
- */;
--  (BinatoneHistoryData *)analyseOriginalData:(BinatoneOriginalData *)originalData sex:(int)sex newVersion:(BOOL) flag;
+ */
+-  (BinatoneHistoryData *)analyseOriginalData:(BinatoneOriginalData *)originalData sex:(int)sex;
 
 /**
  同步历史数据
@@ -210,7 +210,6 @@
  @param completion 历史数据下载完成返回
  */
 - (void)binatone:(CBPeripheral *)peripheral getHistoryData:(NSInteger)startTime endTime:(NSInteger)endTime sex:(int)sex each:(void(^)(NSInteger index, NSInteger count, BinatoneHistoryData *data, BinatoneOriginalData *originalData))eachHandle completion:(void(^)(SLPDataTransferStatus status, NSArray<BinatoneHistoryData *> *dataList, NSArray<BinatoneOriginalData *> *originalDataList))completion;
-
 
 
 @end

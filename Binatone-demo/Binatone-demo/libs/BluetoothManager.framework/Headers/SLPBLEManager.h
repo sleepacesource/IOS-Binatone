@@ -26,6 +26,7 @@
     BOOL mIsScaning;//是否正在扫描
     BOOL mIsCenterManagerInited;//centralManager是否已经初始化
 }
+
 + (SLPBLEManager *)sharedBLEManager;
 
 #pragma mark private
