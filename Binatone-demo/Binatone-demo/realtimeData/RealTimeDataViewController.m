@@ -111,11 +111,11 @@ enum {
     NSDictionary *userInfo = notification.userInfo;
     BinatoneRealTimeData *data = [userInfo objectForKey:kNotificationPostData];
     NSLog(@"st--->>%ld,b-->>%@,h--->>%@,off bed--->>%d",(long)data.status,data.breathRate,data.heartRate,data.isOffBed);
-//    NSString *subname = [peripheral.name componentsSeparatedByString:@"-"][1];
-    NSString *subname =  peripheral.name;
+    NSString *subname = [peripheral.name componentsSeparatedByString:@"-"][1];
+//    NSString *subname =  peripheral.name;
     for (int i = 0; i < SharedDataManager.connectList.count ; i++) {
         SLPPeripheralInfo *item = SharedDataManager.connectList[i];
-        if ([item.name hasPrefix:subname]) {
+        if ([item.name hasSuffix:subname]) {
             RealtimeData *real = [[RealtimeData alloc]init];
             if (data.isInit) {
                 real.status = RealtimeDataStaus_Invalid;

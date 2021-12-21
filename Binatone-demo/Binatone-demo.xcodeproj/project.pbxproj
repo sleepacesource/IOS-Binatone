@@ -11,6 +11,7 @@
 		265F16DA272AA8B5009AB9A2 /* ImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 265F16D8272AA8B5009AB9A2 /* ImageTableViewCell.xib */; };
 		265F16DD272AAEC3009AB9A2 /* ic_shanchu.png in Resources */ = {isa = PBXBuildFile; fileRef = 265F16DC272AAEC2009AB9A2 /* ic_shanchu.png */; };
 		26A698562771B94000F3A141 /* MBP89SN_20200313_1.44(V1.1.4)_Release.des in Resources */ = {isa = PBXBuildFile; fileRef = 26A698552771B94000F3A141 /* MBP89SN_20200313_1.44(V1.1.4)_Release.des */; };
+		26A698582771C89400F3A141 /* MBP89SN-v1.54b(v1.1.04b)-ug-20211221.des in Resources */ = {isa = PBXBuildFile; fileRef = 26A698572771C89400F3A141 /* MBP89SN-v1.54b(v1.1.04b)-ug-20211221.des */; };
 		26B805E12747718300A9D3A6 /* CustomHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B805E02747718200A9D3A6 /* CustomHeader.m */; };
 		26B805E3274771C100A9D3A6 /* CustomHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26B805E2274771C100A9D3A6 /* CustomHeader.xib */; };
 		26B805E52747A33700A9D3A6 /* MBP89SN-v1.53r(v2.0.02r)-gp-20211119.des in Resources */ = {isa = PBXBuildFile; fileRef = 26B805E42747A33700A9D3A6 /* MBP89SN-v1.53r(v2.0.02r)-gp-20211119.des */; };
@@ -76,6 +77,7 @@
 		265F16D8272AA8B5009AB9A2 /* ImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageTableViewCell.xib; sourceTree = "<group>"; };
 		265F16DC272AAEC2009AB9A2 /* ic_shanchu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_shanchu.png; sourceTree = "<group>"; };
 		26A698552771B94000F3A141 /* MBP89SN_20200313_1.44(V1.1.4)_Release.des */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MBP89SN_20200313_1.44(V1.1.4)_Release.des"; sourceTree = "<group>"; };
+		26A698572771C89400F3A141 /* MBP89SN-v1.54b(v1.1.04b)-ug-20211221.des */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MBP89SN-v1.54b(v1.1.04b)-ug-20211221.des"; sourceTree = "<group>"; };
 		26B805DF2747718200A9D3A6 /* CustomHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomHeader.h; sourceTree = "<group>"; };
 		26B805E02747718200A9D3A6 /* CustomHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomHeader.m; sourceTree = "<group>"; };
 		26B805E2274771C100A9D3A6 /* CustomHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomHeader.xib; sourceTree = "<group>"; };
@@ -393,6 +395,7 @@
 		5BA5DD74212CFB240046EFEC /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				26A698572771C89400F3A141 /* MBP89SN-v1.54b(v1.1.04b)-ug-20211221.des */,
 				26A698552771B94000F3A141 /* MBP89SN_20200313_1.44(V1.1.4)_Release.des */,
 				26B805E42747A33700A9D3A6 /* MBP89SN-v1.53r(v2.0.02r)-gp-20211119.des */,
 				5BA5DD76212CFB7D0046EFEC /* Language */,
@@ -506,6 +509,7 @@
 				5BC9589221339FB800827E36 /* common_nav_btn_back_white_nor@2x.png in Resources */,
 				5B3815AA2134EC8B00CC48B8 /* device_btn_refresh_nor@2x.png in Resources */,
 				5B2A9AAE212E4EB10015C210 /* HistoryDataViewController.xib in Resources */,
+				26A698582771C89400F3A141 /* MBP89SN-v1.54b(v1.1.04b)-ug-20211221.des in Resources */,
 				5B2A9AA9212E4E9F0015C210 /* RealTimeDataViewController.xib in Resources */,
 				5BC9589021339FB800827E36 /* common_list_icon_leftarrow@2x.png in Resources */,
 				5BBCDB072135500900E498E2 /* DatePickerPopUpView.xib in Resources */,
