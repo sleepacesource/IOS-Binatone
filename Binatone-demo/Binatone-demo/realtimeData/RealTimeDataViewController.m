@@ -115,7 +115,7 @@ enum {
     NSString *subname =  peripheral.name;
     for (int i = 0; i < SharedDataManager.connectList.count ; i++) {
         SLPPeripheralInfo *item = SharedDataManager.connectList[i];
-        if ([item.name hasSuffix:subname]) {
+        if ([item.name hasPrefix:subname]) {
             RealtimeData *real = [[RealtimeData alloc]init];
             if (data.isInit) {
                 real.status = RealtimeDataStaus_Invalid;
@@ -284,13 +284,13 @@ enum {
             break;
         case RealtimeDataRow_HeartRate:
             title = LocalizedString(@"real_heart");
-            if (status == RealtimeDataStaus_InBed||status == RealtimeDataStaus_B_STOP ||status == RealtimeDataStaus_H_STOP ||status == RealtimeDataStaus_BODYMOVE||status ==RealtimeDataStaus_TURN_OVER) {
+            if (status == RealtimeDataStaus_InBed) {
                 detail = [NSString stringWithFormat:@"%@%@",realdata.heartRate, LocalizedString(@"beats_min")];
             }
             break;
         case RealtimeDataRow_BreathRate:
             title = LocalizedString(@"real_breath");
-            if (status == RealtimeDataStaus_InBed||status == RealtimeDataStaus_B_STOP ||status == RealtimeDataStaus_H_STOP ||status == RealtimeDataStaus_BODYMOVE||status ==RealtimeDataStaus_TURN_OVER) {
+            if (status == RealtimeDataStaus_InBed) {
                 detail = [NSString stringWithFormat:@"%@%@",realdata.breathRate, LocalizedString(@"times_min")];
             }
             break;
