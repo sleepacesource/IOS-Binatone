@@ -11,13 +11,9 @@
 typedef NS_ENUM(NSInteger, RealtimeDataStaus) {
     RealtimeDataStaus_Invalid = -1,
     RealtimeDataStaus_InBed = 0,
-    RealtimeDataStaus_INIT,////初始化状态，约10秒时间
-    RealtimeDataStaus_B_STOP,//呼吸暂停
-    RealtimeDataStaus_H_STOP,//心跳暂停
-    RealtimeDataStaus_BODYMOVE,//体动
-    RealtimeDataStaus_OffBed,//离床
-    RealtimeDataStaus_TURN_OVER,//翻身
+    RealtimeDataStaus_OffBed
 };
+
 
 @interface RealtimeData : NSObject
 @property (nonatomic, assign) RealtimeDataStaus status;

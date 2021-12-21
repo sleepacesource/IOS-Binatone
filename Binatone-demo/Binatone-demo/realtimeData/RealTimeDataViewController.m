@@ -111,7 +111,8 @@ enum {
     NSDictionary *userInfo = notification.userInfo;
     BinatoneRealTimeData *data = [userInfo objectForKey:kNotificationPostData];
     NSLog(@"st--->>%ld,b-->>%@,h--->>%@,off bed--->>%d",(long)data.status,data.breathRate,data.heartRate,data.isOffBed);
-    NSString *subname = [peripheral.name componentsSeparatedByString:@"-"][1];
+//    NSString *subname = [peripheral.name componentsSeparatedByString:@"-"][1];
+    NSString *subname =  peripheral.name;
     for (int i = 0; i < SharedDataManager.connectList.count ; i++) {
         SLPPeripheralInfo *item = SharedDataManager.connectList[i];
         if ([item.name hasSuffix:subname]) {
@@ -121,7 +122,7 @@ enum {
             }else if (data.isOffBed) {
                 real.status = RealtimeDataStaus_OffBed;
             }else{
-                real.status = data.status;
+                real.status =  RealtimeDataStaus_InBed;
             }
             real.breathRate = data.breathRate;
             real.heartRate = data.heartRate;
@@ -130,6 +131,8 @@ enum {
     }
     [self.tableView reloadData];//
 }
+
+
 
 - (IBAction)realtimeButtonClicked:(id)sender {
     
@@ -269,18 +272,6 @@ enum {
                 switch (status) {
                     case RealtimeDataStaus_InBed:
                         detail = LocalizedString(@"in_bed");
-                        break;
-                    case RealtimeDataStaus_B_STOP:
-                        detail = LocalizedString(@"breath_stop");
-                        break;
-                    case RealtimeDataStaus_H_STOP:
-                        detail = LocalizedString(@"heart_stop");
-                        break;
-                    case RealtimeDataStaus_BODYMOVE:
-                        detail = LocalizedString(@"body_move");
-                        break;
-                    case RealtimeDataStaus_TURN_OVER:
-                        detail = LocalizedString(@"turn_over");
                         break;
                     case RealtimeDataStaus_OffBed:
                         detail = LocalizedString(@"left_bed");
