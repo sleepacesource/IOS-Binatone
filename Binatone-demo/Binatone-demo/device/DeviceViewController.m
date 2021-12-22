@@ -439,6 +439,7 @@ enum {
 //}
 
 - (IBAction)upgradeClicked:(id)sender {
+//    < 10% power ,don't upgrade
     if ([self.batteryLabel.text floatValue] < 10) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:LocalizedString(@"low_power") delegate:self cancelButtonTitle:nil otherButtonTitles:LocalizedString(@"confirm"), nil];
         [alert show];
