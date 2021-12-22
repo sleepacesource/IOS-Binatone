@@ -439,6 +439,11 @@ enum {
 //}
 
 - (IBAction)upgradeClicked:(id)sender {
+    if ([self.batteryLabel.text floatValue] < 10) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:LocalizedString(@"low_power") delegate:self cancelButtonTitle:nil otherButtonTitles:LocalizedString(@"confirm"), nil];
+        [alert show];
+        return;
+    }
     KFLog_Normal(YES, @"upgrade");
     NSString *path = [[NSBundle mainBundle] pathForResource:@"MBP89SN-v1.54b(v1.1.04b)-ug-20211221" ofType:@"des"];
     NSData *data = [NSData dataWithContentsOfFile:path];
