@@ -198,9 +198,12 @@ typedef NS_ENUM(NSInteger,SLPBLEMessagetUniqTypes) {
     SLPBLEMessagetUniqType_BinatonePostRealTimeData,//设备向客户端上报实时数据 设备->APP
     SLPBLEMessagetUniqType_BinatonePostOriginalData,//设备向客户端上报原始数据 设备->APP
     SLPBLEMessagetUniqType_BinatoneHistorySummaryQuery,//历史数据的概要查询
+    SLPBLEMessagetUniqType_New_BinatoneHistorySummaryQuery,//new历史数据的概要查询
     SLPBLEMessagetUniqType_BinatoneHistoryBoundaryQuery,//历史数据的边界查询
     SLPBLEMessagetUniqType_BinatoneDownloadHistoryData,//历史数据下载
+    SLPBLEMessagetUniqType_New_BinatoneDownloadHistoryData,
     SLPBLEMessagetUniqType_BinatoneDownloadHistoryDataAdditional,//带温湿度的历史数据下载
+    SLPBLEMessagetUniqType_New_BinatoneDownloadHistoryDataAdditional,//带温湿度的历史数据下载
     SLPBLEMessagetUniqType_BinatonePostStatus,//控制盒状态上报  设备->APP
     SLPBLEMessagetUniqType_BinatoneUpgradeSummery,//概要上传请求
     SLPBLEMessagetUniqType_BinatoneUpgradeContent,//内容上传请求

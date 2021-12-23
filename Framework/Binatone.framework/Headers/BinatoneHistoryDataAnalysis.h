@@ -17,4 +17,8 @@
 @property (nonatomic, assign) int discTime;//设备宕机时间，单位秒
 @property (nonatomic, copy) NSArray *sca;//睡眠分期数组{0：设备未连接；1：不在床；2：清醒;3：睡着}；
 @property (nonatomic, copy) NSString *algorithmVer;//算法版本
+
+//[[timestamp1，duration1]，[timestamp2，duration2]]
+//@property (nonatomic, strong) NSArray *leftBedArray;//离床数组
+//@property (nonatomic, strong) NSArray *apneaArray;//呼吸暂停数组
 @end

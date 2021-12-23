@@ -85,3 +85,4 @@
 "Left bed"="离床";
 "duration"="持续时长";
 "low_power" = "电量过低";
+"none" = "无";

@@ -18,6 +18,7 @@
 #import "BinatoneMAC.h"
 #import "BinatoneOriginalData.h"
 
+
 @interface SLPBLEManager (Binatone)
 
 
@@ -188,6 +189,7 @@
  通过原始数据得到分析结果数据
  @param originalData 传入原始数据对象
  @param sex 性别 (0:女 1：男)
+ @param flag 是否用新算法分析数据（Yes是，NO否），固件版本大于01.01.44用新算法判断，自己确定
  BinatoneOriginalData 原始数据(startTime，recordList)
  BinatoneHistoryData 历史分析数据
  */
@@ -202,13 +204,12 @@
  @param sex 性别 (0:女 1：男)
  @param eachHandle 每获取一条数据返回
  NSInteger index :这条数据的序号
- NSInteger count :本次数据下载的总条数
+ NSInteger count :本次数据下载的总条数 
  BinatoneHistoryData *data :该条历史数据
  BinatoneOriginalData *originalData :该条历史数据的原始数据
  @param completion 历史数据下载完成返回
  */
 - (void)binatone:(CBPeripheral *)peripheral getHistoryData:(NSInteger)startTime endTime:(NSInteger)endTime sex:(int)sex each:(void(^)(NSInteger index, NSInteger count, BinatoneHistoryData *data, BinatoneOriginalData *originalData))eachHandle completion:(void(^)(SLPDataTransferStatus status, NSArray<BinatoneHistoryData *> *dataList, NSArray<BinatoneOriginalData *> *originalDataList))completion;
-
 
 
 @end

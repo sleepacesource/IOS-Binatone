@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "SLPBLEDef.h"
 #import <SLPCommon/SLPCommon.h>
-
+#import <CoreBluetooth/CoreBluetooth.h>
 
 @class CBCentralManager;
 @class SLPPeripheral;
@@ -26,6 +26,7 @@
     BOOL mIsScaning;//是否正在扫描
     BOOL mIsCenterManagerInited;//centralManager是否已经初始化
 }
+
 + (SLPBLEManager *)sharedBLEManager;
 
 #pragma mark private
@@ -39,6 +40,8 @@
 - (SLPDeviceTypes)deviceTypeOfPeripheral:(CBPeripheral *)peripheral;
 - (NSString *)deviceNameOfPeripheral:(CBPeripheral *)peripheral;
 - (NSInteger)deviceTextureOfPeripheral:(CBPeripheral *)peripheral;
+- (NSString *)deviceVersionOfPeripheral:(CBPeripheral *)peripheral;
+
 
 //通过设备名称查询蓝牙句柄 不建议使用
 - (CBPeripheral *)_peripheralOfDeviceName:(NSString *)deviceName;
@@ -46,6 +49,10 @@
          withDeviceName:(NSString *)deviceName
              deviceType:(int)deviceType protocolType:(int)protocolType
                 withWriteWithResponse:(BOOL)writeWithResponse;
+//不建议使用，填充设备版本信息（内部使用）
+- (void)_fillVersionPeripheral:(CBPeripheral *)peripheral
+          deviceVersion:(NSString *)deviceVersion;
+- (BOOL)peripheralIsNewVersion:(CBPeripheral *)peripheral;
 
 - (void)timeDelay;
 

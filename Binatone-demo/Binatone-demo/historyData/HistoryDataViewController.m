@@ -110,13 +110,13 @@ enum{
         UILabel *label2=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width -100, 0, 100, 50)];
         label2.textColor=[UIColor blackColor];
         label2.text = LocalizedString(@"duration");
-         if(section==1)
-         {
-             label.text = LocalizedString(@"Left bed");
-         }else if(section==2)
-         {
-             label.text= LocalizedString(@"breath_stop");
-         }
+//         if(section==1)
+//         {
+//             label.text = self.historyData.analysis.leftBedArray.count >0 ? LocalizedString(@"Left bed") : LocalizedString(@"none");
+//         }else if(section==2)
+//         {
+//             label.text= self.historyData.analysis.leftBedArray.count >0 ? LocalizedString(@"breath_stop"): LocalizedString(@"none");
+//         }
         [view addSubview:label];
         [view addSubview:label2];
          return  view;
@@ -124,10 +124,10 @@ enum{
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    if (self.type == E_HistoryDataType_History) {
-        return  3;
-    }
-    else
+//    if (self.type == E_HistoryDataType_History) {
+//        return  3;
+//    }
+//    else
     return 1;
 }
 
@@ -139,16 +139,16 @@ enum{
             return Row_Bottom;
         }
             break;
-        case 1:
-        {
-            return self.historyData.analysis.leftBedArray.count;
-        }
-            break;
-        case 2:
-        {
-            return self.historyData.analysis.apneaArray.count;
-        }
-            break;
+//        case 1:
+//        {
+//            return self.historyData.analysis.leftBedArray.count;
+//        }
+//            break;
+//        case 2:
+//        {
+//            return self.historyData.analysis.apneaArray.count;
+//        }
+//            break;
         default:
             return 0;
             break;
@@ -173,20 +173,20 @@ enum{
             [cell.detailTextLabel setText:[self detailAtRow:indexPath.row]];
         }
             break;
-        case 1:
-        {
-            NSArray *item = self.historyData.analysis.leftBedArray[indexPath.row];
-            cell.textLabel.text = [NSString stringWithFormat:@"%@",[self timestampToDate:[item[0] integerValue]]];
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%lds",[item[1] integerValue]];
-        }
-            break;
-        case 2:
-        {
-            NSArray *item = self.historyData.analysis.apneaArray[indexPath.row];
-            cell.textLabel.text = [NSString stringWithFormat:@"%@",[self timestampToDate:[item[0] integerValue]]];
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%lds",[item[1] integerValue]];
-        }
-            break;
+//        case 1:
+//        {
+//            NSArray *item = self.historyData.analysis.leftBedArray[indexPath.row];
+//            cell.textLabel.text = [NSString stringWithFormat:@"%@",[self timestampToDate:[item[0] integerValue]]];
+//            cell.detailTextLabel.text = [NSString stringWithFormat:@"%lds",[item[1] integerValue]];
+//        }
+//            break;
+//        case 2:
+//        {
+//            NSArray *item = self.historyData.analysis.apneaArray[indexPath.row];
+//            cell.textLabel.text = [NSString stringWithFormat:@"%@",[self timestampToDate:[item[0] integerValue]]];
+//            cell.detailTextLabel.text = [NSString stringWithFormat:@"%lds",[item[1] integerValue]];
+//        }
+//            break;
             
         default:
             break;

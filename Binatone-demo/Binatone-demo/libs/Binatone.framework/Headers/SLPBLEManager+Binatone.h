@@ -204,7 +204,7 @@
  @param sex 性别 (0:女 1：男)
  @param eachHandle 每获取一条数据返回
  NSInteger index :这条数据的序号
- NSInteger count :本次数据下载的总条数
+ NSInteger count :本次数据下载的总条数 
  BinatoneHistoryData *data :该条历史数据
  BinatoneOriginalData *originalData :该条历史数据的原始数据
  @param completion 历史数据下载完成返回

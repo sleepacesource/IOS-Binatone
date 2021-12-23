@@ -19,6 +19,6 @@
 @property (nonatomic, copy) NSString *algorithmVer;//算法版本
 
 //[[timestamp1，duration1]，[timestamp2，duration2]]
-@property (nonatomic, strong) NSArray *leftBedArray;//离床数组
-@property (nonatomic, strong) NSArray *apneaArray;//呼吸暂停数组
+//@property (nonatomic, strong) NSArray *leftBedArray;//离床数组
+//@property (nonatomic, strong) NSArray *apneaArray;//呼吸暂停数组
 @end
